@@ -92,12 +92,13 @@
     //UIWebView 的 User-Agent
     [self registerUserAgent];
 
-    if ([Login isLogin]) {
-        [self setupTabViewController];
-    }else{
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-        [self setupIntroductionViewController];
-    }
+    //if ([Login isLogin]) {
+    //    [self setupTabViewController];
+    //}else{
+    //    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    //    [self setupIntroductionViewController];
+    //}
+    [self setupTabViewController];
     [self.window makeKeyAndVisible];
     [FunctionIntroManager showIntroPage];
 
