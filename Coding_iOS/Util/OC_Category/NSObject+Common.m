@@ -9,7 +9,7 @@
 #define kPath_ResponseCache @"ResponseCache"
 #define kHUDQueryViewTag 101
 
-#define kBaseURLStr @"https://coding.net/"
+#define kBaseURLStr @"http://wuliaoa.izanpin.com/"
 
 #import "NSObject+Common.h"
 #import "JDStatusBarNotification.h"

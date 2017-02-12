@@ -2018,7 +2018,7 @@
 #pragma mark Tweet
 - (void)request_Tweets_WithObj:(Tweets *)tweets andBlock:(void (^)(id data, NSError *error))block{
     tweets.isLoading = YES;
-    [[CodingNetAPIClient sharedJsonClient] requestJsonDataWithPath:[tweets toPath] withParams:[tweets toParams] withMethodType:Get andBlock:^(id data, NSError *error) {
+    [[CodingNetAPIClient sharedJsonClient] requestJsonDataWithPath:[tweets toPath] withParams:nil withMethodType:Get andBlock:^(id data, NSError *error) {
         tweets.isLoading = NO;
         
         if (data) {

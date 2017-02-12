@@ -47,7 +47,8 @@
     switch (_tweetType) {
         case TweetTypePublicHot:
         case TweetTypePublicTime:
-            requstPath = @"api/tweet/public_tweets";
+//            requstPath = @"api/tweet/public_tweets";
+            requstPath = @"api/article/picture/10/10";
             break;
         case TweetTypeUserFriends:
             requstPath = @"api/activities/user_tweet";
