@@ -48,7 +48,7 @@
         case TweetTypePublicHot:
         case TweetTypePublicTime:
 //            requstPath = @"api/tweet/public_tweets";
-            requstPath = @"api/article/picture/10/10";
+            requstPath = @"api/article/picture/1/1";
             break;
         case TweetTypeUserFriends:
             requstPath = @"api/activities/user_tweet";

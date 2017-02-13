@@ -205,7 +205,7 @@
         }
     }
     //    Coding 报告
-    [[EADeviceToServerLog shareManager] tryToStart];
+//    [[EADeviceToServerLog shareManager] tryToStart];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
