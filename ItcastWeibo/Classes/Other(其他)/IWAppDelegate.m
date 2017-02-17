@@ -27,7 +27,8 @@
     if (account) { // 之前登录成功
         [IWWeiboTool chooseRootController];
     } else { // 之前没有登录成功
-        self.window.rootViewController = [[IWOAuthViewController alloc] init];
+        [IWWeiboTool chooseRootController];
+//        self.window.rootViewController = [[IWOAuthViewController alloc] init];
     }
     return YES;
 }

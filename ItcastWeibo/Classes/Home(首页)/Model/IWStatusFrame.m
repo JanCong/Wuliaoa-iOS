@@ -38,11 +38,11 @@
     // 3.昵称
     CGFloat nameLabelX = CGRectGetMaxX(_iconViewF) + IWStatusCellBorder;
     CGFloat nameLabelY = iconViewY;
-    CGSize nameLabelSize = [status.user.name sizeWithFont:IWStatusNameFont];
+    CGSize nameLabelSize = [status.authorName sizeWithFont:IWStatusNameFont];
     _nameLabelF = (CGRect){{nameLabelX, nameLabelY}, nameLabelSize};
 
     // 4.会员图标
-    if (status.user.mbtype > 2) {
+    if (/*status.user.mbtype*/3 > 2) {
         CGFloat vipViewW = 14;
         CGFloat vipViewH = nameLabelSize.height;
         CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + IWStatusCellBorder;
@@ -53,7 +53,7 @@
     // 5.时间
     CGFloat timeLabelX = nameLabelX;
     CGFloat timeLabelY = CGRectGetMaxY(_nameLabelF) + IWStatusCellBorder * 0.5;
-    CGSize timeLabelSize = [status.created_at sizeWithFont:IWStatusTimeFont];
+    CGSize timeLabelSize = [status.createTime sizeWithFont:IWStatusTimeFont];
     _timeLabelF = (CGRect){{timeLabelX, timeLabelY}, timeLabelSize};
     
     // 6.来源
@@ -66,7 +66,7 @@
     CGFloat contentLabelX = iconViewX;
     CGFloat contentLabelY = MAX(CGRectGetMaxY(_timeLabelF), CGRectGetMaxY(_iconViewF)) + IWStatusCellBorder * 0.5;
     CGFloat contentLabelMaxW = topViewW - 2 * IWStatusCellBorder;
-    CGSize contentLabelSize = [status.text sizeWithFont:IWStatusContentFont constrainedToSize:CGSizeMake(contentLabelMaxW, MAXFLOAT)];
+    CGSize contentLabelSize = [status.content sizeWithFont:IWStatusContentFont constrainedToSize:CGSizeMake(contentLabelMaxW, MAXFLOAT)];
     _contentLabelF = (CGRect){{contentLabelX, contentLabelY}, contentLabelSize};
     
     // 8.配图
@@ -88,7 +88,7 @@
         // 10.被转发微博的昵称
         CGFloat retweetNameLabelX = IWStatusCellBorder;
         CGFloat retweetNameLabelY = IWStatusCellBorder;
-        NSString *name = [NSString stringWithFormat:@"@%@", status.retweeted_status.user.name];
+        NSString *name = [NSString stringWithFormat:@"@%@", status.retweeted_status.authorName];
         CGSize retweetNameLabelSize = [name sizeWithFont:IWRetweetStatusNameFont];
         _retweetNameLabelF = (CGRect){{retweetNameLabelX, retweetNameLabelY}, retweetNameLabelSize};
         
@@ -96,7 +96,7 @@
         CGFloat retweetContentLabelX = retweetNameLabelX;
         CGFloat retweetContentLabelY = CGRectGetMaxY(_retweetNameLabelF) + IWStatusCellBorder * 0.5;
         CGFloat retweetContentLabelMaxW = retweetViewW - 2 * IWStatusCellBorder;
-        CGSize retweetContentLabelSize = [status.retweeted_status.text sizeWithFont:IWRetweetStatusContentFont constrainedToSize:CGSizeMake(retweetContentLabelMaxW, MAXFLOAT)];
+        CGSize retweetContentLabelSize = [status.retweeted_status.content sizeWithFont:IWRetweetStatusContentFont constrainedToSize:CGSizeMake(retweetContentLabelMaxW, MAXFLOAT)];
         _retweetContentLabelF = (CGRect){{retweetContentLabelX, retweetContentLabelY}, retweetContentLabelSize};
         
         // 12.被转发微博的配图

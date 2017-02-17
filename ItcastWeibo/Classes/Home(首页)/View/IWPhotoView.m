@@ -34,10 +34,10 @@
     _photo = photo;
     
     // 控制gifView的可见性
-    self.gifView.hidden = ![photo.thumbnail_pic hasSuffix:@"gif"];
+    self.gifView.hidden = ![photo.thumbnailUrl hasSuffix:@"gif"];
     
     // 下载图片
-    [self setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+    [self setImageWithURL:[NSURL URLWithString:photo.thumbnailUrl] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
 }
 
 - (void)layoutSubviews

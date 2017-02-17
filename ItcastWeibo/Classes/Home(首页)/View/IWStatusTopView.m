@@ -108,20 +108,20 @@
     
     // 1.取出模型数据
     IWStatus *status = statusFrame.status;
-    IWUser *user = status.user;
+//    IWUser *user = status.authorName;
     
     // 2.头像
-    [self.iconView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
+    [self.iconView setImageWithURL:nil/*[NSURL URLWithString:user.profile_image_url]*/ placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
     self.iconView.frame = self.statusFrame.iconViewF;
     
     // 3.昵称
-    self.nameLabel.text = user.name;
+    self.nameLabel.text = status.authorName;//user.name;
     self.nameLabel.frame = self.statusFrame.nameLabelF;
     
     // 4.vip
-    if (user.mbtype > 2) {
+    if (/*user.mbtype*/3 > 2) {
         self.vipView.hidden = NO;
-        self.vipView.image = [UIImage imageWithName:[NSString stringWithFormat:@"common_icon_membership_level%d", user.mbrank]];
+        self.vipView.image = [UIImage imageWithName:[NSString stringWithFormat:@"common_icon_membership_level%d", 3/*user.mbrank*/]];
         self.vipView.frame = self.statusFrame.vipViewF;
         
         self.nameLabel.textColor = [UIColor orangeColor];
@@ -132,10 +132,10 @@
     }
     
     // 5.时间
-    self.timeLabel.text = status.created_at;
+    self.timeLabel.text = status.createTime;
     CGFloat timeLabelX = self.statusFrame.nameLabelF.origin.x;
     CGFloat timeLabelY = CGRectGetMaxY(self.statusFrame.nameLabelF) + IWStatusCellBorder * 0.5;
-    CGSize timeLabelSize = [status.created_at sizeWithFont:IWStatusTimeFont];
+    CGSize timeLabelSize = [status.createTime sizeWithFont:IWStatusTimeFont];
     self.timeLabel.frame = (CGRect){{timeLabelX, timeLabelY}, timeLabelSize};
     
     // 6.来源
@@ -146,7 +146,7 @@
     self.sourceLabel.frame = (CGRect){{sourceLabelX, sourceLabelY}, sourceLabelSize};
     
     // 7.正文
-    self.contentLabel.text = status.text;
+    self.contentLabel.text = status.content;
     self.contentLabel.frame = self.statusFrame.contentLabelF;
     
     // 8.配图

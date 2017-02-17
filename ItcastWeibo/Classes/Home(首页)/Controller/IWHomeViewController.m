@@ -20,13 +20,13 @@
 #import "MJExtension.h"
 #import "IWStatusCell.h"
 #import "IWUser.h"
-#import "MJRefresh.h"
+#import <MJRefresh/MJRefresh.h>
 
-@interface IWHomeViewController () <MJRefreshBaseViewDelegate>
+@interface IWHomeViewController ()
 @property (nonatomic, weak) IWTitleButton *titleButton;
 @property (nonatomic, strong) NSMutableArray *statusFrames;
-@property (nonatomic, weak) MJRefreshFooterView *footer;
-@property (nonatomic, weak) MJRefreshHeaderView *header;
+@property (nonatomic, weak) MJRefreshFooter *footer;
+@property (nonatomic, weak) MJRefreshHeader *header;
 @end
 
 @implementation IWHomeViewController
@@ -69,10 +69,10 @@
     params[@"uid"] = @([IWAccountTool account].uid);
     
     // 3.发送请求
-    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params
+    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/joke/1/1" parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // 字典转模型
-         IWUser *user = [IWUser objectWithKeyValues:responseObject];
+         IWUser *user = [IWUser mj_objectWithKeyValues:responseObject];
          // 设置标题文字
          [self.titleButton setTitle:user.name forState:UIControlStateNormal];
          // 保存昵称
@@ -89,42 +89,21 @@
  */
 - (void)setupRefreshView
 {
-    // 1.下拉刷新
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.tableView;
-    header.delegate = self;
-    // 自动进入刷新状态
-    [header beginRefreshing];
-    self.header = header;
-    
-    // 2.上拉刷新(上拉加载更多数据)
-    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
-    footer.scrollView = self.tableView;
-    footer.delegate = self;
-    self.footer = footer;
-//    footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView){
-//        IWLog(@"refreshing.....");
-//    };
+    MJWeakSelf
+    // 下拉刷新
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    //上拉刷新
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    [self.tableView.mj_footer beginRefreshing];
 }
 
-- (void)dealloc
-{
-    // 释放内存
-    [self.header free];
-    [self.footer free];
-}
 
-/**
- *  刷新控件进入开始刷新状态的时候调用
- */
-- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
-{
-    if ([refreshView isKindOfClass:[MJRefreshFooterView class]]) { // 上拉刷新
-        [self loadMoreData];
-    } else { // 下拉刷新
-        [self loadNewData];
-    }
-}
+
 
 /**
  *  发送请求加载更多的微博数据
@@ -141,15 +120,15 @@
     if (self.statusFrames.count) {
         IWStatusFrame *statusFrame = [self.statusFrames lastObject];
         // 加载ID <= max_id的微博
-        long long maxId = [statusFrame.status.idstr longLongValue] - 1;
+        long long maxId = [statusFrame.status.id longLongValue] - 1;
         params[@"max_id"] = @(maxId);
     }
     
     // 3.发送请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params
+    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/joke/1/1" parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // 将字典数组转为模型数组(里面放的就是IWStatus模型)
-         NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+         NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
          // 创建frame模型对象
          NSMutableArray *statusFrameArray = [NSMutableArray array];
          for (IWStatus *status in statusArray) {
@@ -166,10 +145,10 @@
          [self.tableView reloadData];
          
          // 让刷新控件停止显示刷新状态
-         [self.footer endRefreshing];
+         [self.tableView.mj_footer endRefreshing];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          // 让刷新控件停止显示刷新状态
-         [self.footer endRefreshing];
+         [self.tableView.mj_footer endRefreshing];
      }];
 }
 
@@ -188,14 +167,14 @@
     if (self.statusFrames.count) {
         IWStatusFrame *statusFrame = self.statusFrames[0];
         // 加载ID比since_id大的微博
-        params[@"since_id"] = statusFrame.status.idstr;
+        params[@"since_id"] = statusFrame.status.id;
     }
     
     // 3.发送请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params
+    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/joke/1/1" parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // 将字典数组转为模型数组(里面放的就是IWStatus模型)
-         NSArray *statusArray = [IWStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+         NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
          // 创建frame模型对象
          NSMutableArray *statusFrameArray = [NSMutableArray array];
          for (IWStatus *status in statusArray) {
@@ -219,13 +198,13 @@
          [self.tableView reloadData];
          
          // 让刷新控件停止显示刷新状态
-         [self.header endRefreshing];
+         [self.tableView.mj_header endRefreshing];
          
          // 显示最新微博的数量(给用户一些友善的提示)
          [self showNewStatusCount:statusFrameArray.count];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          // 让刷新控件停止显示刷新状态
-         [self.header endRefreshing];
+         [self.tableView.mj_header endRefreshing];
      }];
 }
 

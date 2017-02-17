@@ -43,7 +43,7 @@
         mjphoto.srcImageView = self.subviews[i]; // 来源于哪个UIImageView
         
         IWPhoto *iwphoto = self.photos[i];
-        NSString *photoUrl = [iwphoto.thumbnail_pic stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+        NSString *photoUrl = [iwphoto.thumbnailUrl stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
         mjphoto.url = [NSURL URLWithString:photoUrl]; // 图片路径
         
         [myphotos addObject:mjphoto];

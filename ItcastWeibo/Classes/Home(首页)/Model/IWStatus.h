@@ -10,6 +10,32 @@
 @class IWUser;
 
 @interface IWStatus : NSObject
+
+/**
+ *  作者名称
+ */
+@property (nonatomic, copy) NSString *authorName;
+
+/**
+ *  段子的内容
+ */
+@property (nonatomic, copy) NSString *content;
+
+/**
+ *  段子的时间
+ */
+@property (nonatomic, copy) NSString *createTime;
+/**
+ *  段子的ID
+ */
+@property (nonatomic, copy) NSString *id;
+/**
+ *  微博的配图(数组中装模型:IWPhoto)
+ */
+@property (nonatomic, strong) NSArray *pic_urls;
+
+
+
 /**
  *  微博的内容(文字)
  */
@@ -21,15 +47,15 @@
 /**
  *  微博的时间
  */
-@property (nonatomic, copy) NSString *created_at;
+//@property (nonatomic, copy) NSString *created_at;
 /**
  *  微博的ID
  */
-@property (nonatomic, copy) NSString *idstr;
+//@property (nonatomic, copy) NSString *idstr;
 /**
  *  微博的配图(数组中装模型:IWPhoto)
  */
-@property (nonatomic, strong) NSArray *pic_urls;
+//@property (nonatomic, strong) NSArray *pic_urls;
 //@property (nonatomic, copy) NSString *thumbnail_pic;
 
 /**
@@ -48,7 +74,7 @@
 /**
  *  微博的作者
  */
-@property (nonatomic, strong) IWUser *user;
+//@property (nonatomic, strong) IWUser *user;
 /**
  *  被转发的微博
  */

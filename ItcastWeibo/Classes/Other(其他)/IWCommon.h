@@ -4,6 +4,9 @@
 #define IWRedirectURI @"http://ios.itcast.cn"
 #define IWLoginURL [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@", IWAppKey, IWRedirectURI]
 
+// 弱引用
+#define MJWeakSelf __weak typeof(self) weakSelf = self;
+
 // 1.判断是否为iOS7
 #define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 

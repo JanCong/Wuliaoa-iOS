@@ -63,14 +63,14 @@
     _statusFrame = statusFrame;
     
     IWStatus *retweetStatus = statusFrame.status.retweeted_status;
-    IWUser *user = retweetStatus.user;
+//    IWUser *user = retweetStatus.user;
     
     // 1.昵称
-    self.retweetNameLabel.text = [NSString stringWithFormat:@"@%@", user.name];
+    self.retweetNameLabel.text = [NSString stringWithFormat:@"@%@", retweetStatus.authorName];
     self.retweetNameLabel.frame = self.statusFrame.retweetNameLabelF;
     
     // 2.正文
-    self.retweetContentLabel.text = retweetStatus.text;
+    self.retweetContentLabel.text = retweetStatus.content;
     self.retweetContentLabel.frame = self.statusFrame.retweetContentLabelF;
     
     // 3.配图
