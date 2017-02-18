@@ -80,4 +80,5 @@
  */
 @property (nonatomic, strong) IWStatus *retweeted_status;
 
++ (NSDictionary *)objectClassInArray;
 @end

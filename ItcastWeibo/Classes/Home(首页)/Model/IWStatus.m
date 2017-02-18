@@ -13,7 +13,7 @@
 
 @implementation IWStatus
 
-- (NSDictionary *)objectClassInArray
++ (NSDictionary *)objectClassInArray
 {
     return @{@"images" : [IWPhoto class]};
 }

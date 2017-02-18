@@ -10,6 +10,6 @@ target 'Wuliaoa' do
 	pod 'MJRefresh'
 	pod 'MBProgressHUD'
 	pod 'FMDB'
-   pod 'MJExtension'
+    pod 'MJExtension'
 	pod 'MJPhotoBrowser'
 end

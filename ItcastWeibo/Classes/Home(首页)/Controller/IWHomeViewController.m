@@ -174,6 +174,7 @@
     // 3.发送请求
     [mgr GET:@"http://wuliaoa.izanpin.com/api/article/1/10" parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         // Tell MJExtension what type model will be contained in IWPhoto.
          [IWStatus mj_setupObjectClassInArray:^NSDictionary *{
              return @{@"images" : [IWPhoto class]};
          }];
@@ -230,7 +231,7 @@
     [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:14];
     if (count) {
-        NSString *title = [NSString stringWithFormat:@"共有%d条新的微博", count];
+        NSString *title = [NSString stringWithFormat:@"共有%lu条新的微博", (unsigned long)count];
         [btn setTitle:title forState:UIControlStateNormal];
     } else {
         [btn setTitle:@"没有新的微博数据" forState:UIControlStateNormal];
