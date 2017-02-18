@@ -213,7 +213,7 @@
  *
  *  @param count 最新微博的数量
  */
-- (void)showNewStatusCount:(int)count
+- (void)showNewStatusCount:(NSUInteger)count
 {
     // 1.创建一个按钮
     UIButton *btn = [[UIButton alloc] init];
