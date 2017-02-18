@@ -15,7 +15,7 @@
 
 - (NSDictionary *)objectClassInArray
 {
-    return @{@"pic_urls" : [IWPhoto class]};
+    return @{@"images" : [IWPhoto class]};
 }
 
 - (NSString *)created_at

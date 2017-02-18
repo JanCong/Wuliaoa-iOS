@@ -21,6 +21,7 @@
 #import "IWStatusCell.h"
 #import "IWUser.h"
 #import <MJRefresh/MJRefresh.h>
+#import "IWPhoto.h"
 
 @interface IWHomeViewController ()
 @property (nonatomic, weak) IWTitleButton *titleButton;
@@ -125,7 +126,7 @@
     }
     
     // 3.发送请求
-    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/joke/1/1" parameters:nil
+    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/1/1" parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // 将字典数组转为模型数组(里面放的就是IWStatus模型)
          NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
@@ -171,8 +172,11 @@
     }
     
     // 3.发送请求
-    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/joke/1/1" parameters:nil
+    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/1/10" parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         [IWStatus mj_setupObjectClassInArray:^NSDictionary *{
+             return @{@"images" : [IWPhoto class]};
+         }];
          // 将字典数组转为模型数组(里面放的就是IWStatus模型)
          NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
          // 创建frame模型对象

@@ -74,10 +74,10 @@
     self.retweetContentLabel.frame = self.statusFrame.retweetContentLabelF;
     
     // 3.配图
-    if (retweetStatus.pic_urls.count) {
+    if (retweetStatus.images.count) {
         self.retweetPhotosView.hidden = NO;
         self.retweetPhotosView.frame = self.statusFrame.retweetPhotosViewF;
-        self.retweetPhotosView.photos = retweetStatus.pic_urls;
+        self.retweetPhotosView.photos = retweetStatus.images;
     } else {
         self.retweetPhotosView.hidden = YES;
     }

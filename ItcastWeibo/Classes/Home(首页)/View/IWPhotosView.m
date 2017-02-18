@@ -32,7 +32,7 @@
 
 - (void)photoTap:(UITapGestureRecognizer *)recognizer
 {
-    int count = self.photos.count;
+    NSUInteger count = self.photos.count;
     
     // 1.封装图片数据
     NSMutableArray *myphotos = [NSMutableArray arrayWithCapacity:count];
@@ -43,8 +43,8 @@
         mjphoto.srcImageView = self.subviews[i]; // 来源于哪个UIImageView
         
         IWPhoto *iwphoto = self.photos[i];
-        NSString *photoUrl = [iwphoto.thumbnailUrl stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
-        mjphoto.url = [NSURL URLWithString:photoUrl]; // 图片路径
+//        NSString *photoUrl = [iwphoto.url stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+        mjphoto.url = [NSURL URLWithString:iwphoto.url]; // 图片路径
         
         [myphotos addObject:mjphoto];
     }

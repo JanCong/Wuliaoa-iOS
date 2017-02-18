@@ -32,7 +32,6 @@
 - (void)setPhoto:(IWPhoto *)photo
 {
     _photo = photo;
-    
     // 控制gifView的可见性
     self.gifView.hidden = ![photo.thumbnailUrl hasSuffix:@"gif"];
     

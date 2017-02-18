@@ -150,10 +150,10 @@
     self.contentLabel.frame = self.statusFrame.contentLabelF;
     
     // 8.配图
-    if (status.pic_urls.count) {
+    if (status.images.count) {
         self.photosView.hidden = NO;
         self.photosView.frame = self.statusFrame.photosViewF;
-        self.photosView.photos = status.pic_urls;
+        self.photosView.photos = status.images;
     } else {
         self.photosView.hidden = YES;
     }

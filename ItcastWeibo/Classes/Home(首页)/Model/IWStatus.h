@@ -32,7 +32,7 @@
 /**
  *  微博的配图(数组中装模型:IWPhoto)
  */
-@property (nonatomic, strong) NSArray *pic_urls;
+@property (nonatomic, strong) NSArray *images;
 
 
 

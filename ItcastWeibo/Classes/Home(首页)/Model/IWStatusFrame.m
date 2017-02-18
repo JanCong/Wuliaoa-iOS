@@ -70,9 +70,9 @@
     _contentLabelF = (CGRect){{contentLabelX, contentLabelY}, contentLabelSize};
     
     // 8.配图
-    if (status.pic_urls.count) {
+    if (status.images.count) {
 #warning 根据图片个数计算整个相册的尺寸
-        CGSize photosViewSize = [IWPhotosView photosViewSizeWithPhotosCount:status.pic_urls.count];
+        CGSize photosViewSize = [IWPhotosView photosViewSizeWithPhotosCount:status.images.count];
         CGFloat photosViewX = contentLabelX;
         CGFloat photosViewY = CGRectGetMaxY(_contentLabelF) + IWStatusCellBorder;
         _photosViewF = CGRectMake(photosViewX, photosViewY, photosViewSize.width, photosViewSize.height);
@@ -100,9 +100,9 @@
         _retweetContentLabelF = (CGRect){{retweetContentLabelX, retweetContentLabelY}, retweetContentLabelSize};
         
         // 12.被转发微博的配图
-        if(status.retweeted_status.pic_urls.count) {
+        if(status.retweeted_status.images.count) {
 #warning 根据图片个数计算整个相册的尺寸
-            CGSize retweetPhotosViewSize = [IWPhotosView photosViewSizeWithPhotosCount:status.retweeted_status.pic_urls.count];
+            CGSize retweetPhotosViewSize = [IWPhotosView photosViewSizeWithPhotosCount:status.retweeted_status.images.count];
             CGFloat retweetPhotosViewX = retweetContentLabelX;
             CGFloat retweetPhotosViewY = CGRectGetMaxY(_retweetContentLabelF) + IWStatusCellBorder;
             _retweetPhotosViewF = CGRectMake(retweetPhotosViewX, retweetPhotosViewY, retweetPhotosViewSize.width, retweetPhotosViewSize.height);
@@ -117,7 +117,7 @@
         // 有转发微博时topViewH
         topViewH = CGRectGetMaxY(_retweetViewF);
     } else { // 没有转发微博
-        if (status.pic_urls.count) { // 有图
+        if (status.images.count) { // 有图
             topViewH = CGRectGetMaxY(_photosViewF);
         } else { // 无图
             topViewH = CGRectGetMaxY(_contentLabelF);
