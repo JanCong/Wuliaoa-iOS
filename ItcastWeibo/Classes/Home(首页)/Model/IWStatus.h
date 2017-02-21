@@ -39,7 +39,7 @@
 /**
  *  微博的内容(文字)
  */
-@property (nonatomic, copy) NSString *text;
+//@property (nonatomic, copy) NSString *text;
 /**
  *  微博的来源
  */

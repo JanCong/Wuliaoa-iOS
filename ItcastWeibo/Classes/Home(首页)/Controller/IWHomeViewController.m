@@ -172,7 +172,7 @@
     }
     
     // 3.发送请求
-    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/1/10" parameters:nil
+    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/picture/1/10" parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // Tell MJExtension what type model will be contained in IWPhoto.
          [IWStatus mj_setupObjectClassInArray:^NSDictionary *{
