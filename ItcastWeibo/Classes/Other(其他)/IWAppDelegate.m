@@ -20,7 +20,6 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
-    
     // 先判断有无存储账号信息
     IWAccount *account = [IWAccountTool account];
     

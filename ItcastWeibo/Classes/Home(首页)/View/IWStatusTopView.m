@@ -111,7 +111,7 @@
 //    IWUser *user = status.authorName;
     
     // 2.头像
-    [self.iconView setImageWithURL:nil/*[NSURL URLWithString:user.profile_image_url]*/ placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
+    [self.iconView setImageWithURL:[NSURL URLWithString:status.authorAvatar] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
     self.iconView.frame = self.statusFrame.iconViewF;
     
     // 3.昵称

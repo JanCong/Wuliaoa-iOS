@@ -821,6 +821,7 @@
 						DevelopmentTeam = 5YQ85Q9UV8;
 					};
 					0829D8AC19172DBE005E4B1D = {
+						DevelopmentTeam = 5YQ85Q9UV8;
 						TestTargetID = 0829D89119172DBE005E4B1D;
 					};
 				};
@@ -1130,6 +1131,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ItcastWeibo.app/ItcastWeibo";
+				DEVELOPMENT_TEAM = 5YQ85Q9UV8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1152,6 +1154,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ItcastWeibo.app/ItcastWeibo";
+				DEVELOPMENT_TEAM = 5YQ85Q9UV8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

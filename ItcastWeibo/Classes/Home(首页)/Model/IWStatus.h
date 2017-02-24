@@ -17,6 +17,12 @@
 @property (nonatomic, copy) NSString *authorName;
 
 /**
+ *  作者头像
+ */
+@property (nonatomic, copy) NSString *authorAvatar;
+
+
+/**
  *  段子的内容
  */
 @property (nonatomic, copy) NSString *content;

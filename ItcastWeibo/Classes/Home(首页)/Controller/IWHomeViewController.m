@@ -100,7 +100,7 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
-    [self.tableView.mj_footer beginRefreshing];
+//    [self.tableView.mj_footer beginRefreshing];
 }
 
 
@@ -116,17 +116,21 @@
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
+//    params[@"access_token"] = [IWAccountTool account].access_token;
     params[@"count"] = @5;
+    static NSString *URLString;
     if (self.statusFrames.count) {
         IWStatusFrame *statusFrame = [self.statusFrames lastObject];
         // 加载ID <= max_id的微博
-        long long maxId = [statusFrame.status.id longLongValue] - 1;
-        params[@"max_id"] = @(maxId);
+        long long maxId = [statusFrame.status.id longLongValue];
+        params[@"maxId"] = @(maxId);
+        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/%@?maxId=%@",params[@"count"],params[@"maxId"]];
+    }else{
+        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/%@",params[@"count"]];
     }
     
     // 3.发送请求
-    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/1/1" parameters:nil
+    [mgr GET:URLString parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // 将字典数组转为模型数组(里面放的就是IWStatus模型)
          NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
@@ -163,16 +167,20 @@
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"count"] = @5;
+//    params[@"access_token"] = [IWAccountTool account].access_token;
+    params[@"count"] = @10;
+    static NSString *URLString;
     if (self.statusFrames.count) {
         IWStatusFrame *statusFrame = self.statusFrames[0];
         // 加载ID比since_id大的微博
-        params[@"since_id"] = statusFrame.status.id;
+        params[@"sinceid"] = statusFrame.status.id;
+        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/100?sinceId=%@",params[@"sinceid"]];
+    }else{
+        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/%@",params[@"count"]];
     }
     
     // 3.发送请求
-    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/picture/1/10" parameters:nil
+    [mgr GET:URLString parameters:nil
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // Tell MJExtension what type model will be contained in IWPhoto.
          [IWStatus mj_setupObjectClassInArray:^NSDictionary *{
