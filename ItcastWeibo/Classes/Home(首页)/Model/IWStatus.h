@@ -36,10 +36,22 @@
  */
 @property (nonatomic, copy) NSString *id;
 /**
- *  微博的配图(数组中装模型:IWPhoto)
+ *  无聊图的配图(数组中装模型:IWPhoto)
  */
 @property (nonatomic, strong) NSArray *images;
 
+/**
+ *  无聊图的评论数
+ */
+@property (nonatomic, assign) int commentCount;
+/**
+ *  无聊图的表态数(被赞数)
+ */
+@property (nonatomic, assign) int likeCount;
+/**
+ *  无聊图的被踩数
+ */
+@property (nonatomic, assign) int hateCount;
 
 
 /**
@@ -71,11 +83,11 @@
 /**
  *  微博的评论数
  */
-@property (nonatomic, assign) int comments_count;
+//@property (nonatomic, assign) int comments_count;
 /**
  *  微博的表态数(被赞数)
  */
-@property (nonatomic, assign) int attitudes_count;
+//@property (nonatomic, assign) int attitudes_count;
 
 /**
  *  微博的作者

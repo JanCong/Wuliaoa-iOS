@@ -119,14 +119,14 @@
     self.nameLabel.frame = self.statusFrame.nameLabelF;
     
     // 4.vip
-    if (/*user.mbtype*/3 > 2) {
+    if (/*user.mbtype*/1 > 2) {
         self.vipView.hidden = NO;
         self.vipView.image = [UIImage imageWithName:[NSString stringWithFormat:@"common_icon_membership_level%d", 3/*user.mbrank*/]];
         self.vipView.frame = self.statusFrame.vipViewF;
         
         self.nameLabel.textColor = [UIColor orangeColor];
     } else {
-        self.nameLabel.textColor = [UIColor blackColor];
+        self.nameLabel.textColor = [UIColor orangeColor];
         
         self.vipView.hidden = YES;
     }

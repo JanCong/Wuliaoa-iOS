@@ -25,7 +25,7 @@
 
 // 5.微博cell上面的属性
 /** 昵称的字体 */
-#define IWStatusNameFont [UIFont systemFontOfSize:15]
+#define IWStatusNameFont [UIFont systemFontOfSize:18]
 /** 被转发微博作者昵称的字体 */
 #define IWRetweetStatusNameFont IWStatusNameFont
 
@@ -35,7 +35,7 @@
 #define IWStatusSourceFont IWStatusTimeFont
 
 /** 正文的字体 */
-#define IWStatusContentFont [UIFont systemFontOfSize:13]
+#define IWStatusContentFont [UIFont systemFontOfSize:16]
 /** 被转发微博正文的字体 */
 #define IWRetweetStatusContentFont IWStatusContentFont
 

@@ -86,14 +86,14 @@
     IWHomeViewController *home = [[IWHomeViewController alloc] init];
     [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
     
-    // 2.消息
-    IWMessageViewController *message = [[IWMessageViewController alloc] init];
-    [self setupChildViewController:message title:@"消息" imageName:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
-    
-    // 3.广场
-    IWDiscoverViewController *discover = [[IWDiscoverViewController alloc] init];
-    [self setupChildViewController:discover title:@"广场" imageName:@"tabbar_discover" selectedImageName:@"tabbar_discover_selected"];
-    
+//    // 2.消息
+//    IWMessageViewController *message = [[IWMessageViewController alloc] init];
+//    [self setupChildViewController:message title:@"消息" imageName:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
+//    
+//    // 3.广场
+//    IWDiscoverViewController *discover = [[IWDiscoverViewController alloc] init];
+//    [self setupChildViewController:discover title:@"广场" imageName:@"tabbar_discover" selectedImageName:@"tabbar_discover_selected"];
+//    
     // 4.我
     IWMeViewController *me = [[IWMeViewController alloc] init];
     [self setupChildViewController:me title:@"我" imageName:@"tabbar_profile" selectedImageName:@"tabbar_profile_selected"];

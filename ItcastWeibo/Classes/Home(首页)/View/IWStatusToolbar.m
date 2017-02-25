@@ -15,6 +15,7 @@
 @property (nonatomic, weak) UIButton *reweetBtn;
 @property (nonatomic, weak) UIButton *commentBtn;
 @property (nonatomic, weak) UIButton *attitudeBtn;
+@property (nonatomic, weak) UIButton *hateBtn;
 @end
 
 @implementation IWStatusToolbar
@@ -45,11 +46,13 @@
         self.highlightedImage = [UIImage resizedImageWithName:@"timeline_card_bottom_background_highlighted"];
         
         // 2.添加按钮
-        self.reweetBtn = [self setupBtnWithTitle:@"转发" image:@"timeline_icon_retweet" bgImage:@"timeline_card_leftbottom_highlighted"];
+        self.reweetBtn = [self setupBtnWithTitle:@"分享" image:@"timeline_icon_retweet" bgImage:@"timeline_card_leftbottom_highlighted"];
         self.commentBtn = [self setupBtnWithTitle:@"评论" image:@"timeline_icon_comment" bgImage:@"timeline_card_middlebottom_highlighted"];
         self.attitudeBtn = [self setupBtnWithTitle:@"赞" image:@"timeline_icon_unlike" bgImage:@"timeline_card_rightbottom_highlighted"];
+        self.hateBtn = [self setupBtnWithTitle:@"踩" image:@"timeline_icon_unlike" bgImage:@"timeline_card_rightbottom_highlighted"];
         
         // 3.添加分割线
+        [self setupDivider];
         [self setupDivider];
         [self setupDivider];
     }
@@ -84,6 +87,7 @@
     btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     btn.adjustsImageWhenHighlighted = NO;
     [btn setBackgroundImage:[UIImage resizedImageWithName:bgImage] forState:UIControlStateHighlighted];
+    [btn addTarget:self action:@selector(doButton1:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
     // 添加按钮到数组
@@ -97,9 +101,9 @@
     [super layoutSubviews];
     
     // 1.设置按钮的frame
-    int dividerCount = self.dividers.count; // 分割线的个数
+    NSUInteger dividerCount = self.dividers.count; // 分割线的个数
     CGFloat dividerW = 2; // 分割线的宽度
-    int btnCount = self.btns.count;
+    NSUInteger btnCount = self.btns.count;
     CGFloat btnW = (self.frame.size.width - dividerCount * dividerW) / btnCount;
     CGFloat btnH = self.frame.size.height;
     CGFloat btnY = 0;
@@ -130,8 +134,9 @@
     
     // 1.设置转发数
     [self setupBtn:self.reweetBtn originalTitle:@"转发" count:status.reposts_count];
-    [self setupBtn:self.commentBtn originalTitle:@"评论" count:status.comments_count];
-    [self setupBtn:self.attitudeBtn originalTitle:@"赞" count:status.attitudes_count];
+    [self setupBtn:self.commentBtn originalTitle:@"评论" count:status.commentCount];
+    [self setupBtn:self.attitudeBtn originalTitle:@"赞" count:status.likeCount];
+    [self setupBtn:self.hateBtn originalTitle:@"踩" count:status.hateCount];
 }
 
 /**
@@ -174,4 +179,7 @@
     }
 }
 
+- (void)doButton1:(UIButton *)sender{
+    
+}
 @end

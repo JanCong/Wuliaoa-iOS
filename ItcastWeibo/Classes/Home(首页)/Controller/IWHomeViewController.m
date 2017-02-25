@@ -239,10 +239,10 @@
     [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:14];
     if (count) {
-        NSString *title = [NSString stringWithFormat:@"共有%lu条新的微博", (unsigned long)count];
+        NSString *title = [NSString stringWithFormat:@"共有%lu条新的无聊图", (unsigned long)count];
         [btn setTitle:title forState:UIControlStateNormal];
     } else {
-        [btn setTitle:@"没有新的微博数据" forState:UIControlStateNormal];
+        [btn setTitle:@"没有新的无聊图数据" forState:UIControlStateNormal];
     }
     
     // 3.设置按钮的初始frame
@@ -343,5 +343,23 @@
 {
     IWStatusFrame *statusFrame = self.statusFrames[indexPath.row];
     return statusFrame.cellHeight;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    static UIAccelerationValue _oldOffset;
+    if (_oldOffset > -64) {
+        if (scrollView.contentOffset.y > _oldOffset) {//如果当前位移大于缓存位移，说明scrollView向上滑动
+            [UIView animateWithDuration:1.5 animations:^{
+                self.tabBarController.tabBar.hidden = YES;
+            }];
+            
+        }else{
+            [UIView animateWithDuration:1.5 animations:^{
+                self.tabBarController.tabBar.hidden = NO;
+            }];
+        }
+    }
+    
+    _oldOffset = scrollView.contentOffset.y;//将当前位移变成缓存位移
 }
 @end

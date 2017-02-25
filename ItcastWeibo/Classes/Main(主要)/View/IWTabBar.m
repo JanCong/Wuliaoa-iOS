@@ -110,7 +110,7 @@
         
         // 2.设置按钮的frame
         CGFloat buttonX = index * buttonW;
-        if (index > 1) {
+        if (index > 0) {
             buttonX += buttonW;
         }
         button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);

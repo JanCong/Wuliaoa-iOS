@@ -86,6 +86,7 @@
             // UIViewContentModeScaleToFill : 直接拉伸图片至填充整个imageView
             
             if (photos.count == 1) {
+                photoView.frame = CGRectMake(photoX, photoY, IWPhotoW * 3, IWPhotoH * 3);
                 photoView.contentMode = UIViewContentModeScaleAspectFit;
                 photoView.clipsToBounds = NO;
             } else {
@@ -100,20 +101,29 @@
 
 + (CGSize)photosViewSizeWithPhotosCount:(int)count
 {
-    // 一行最多有3列
-    int maxColumns = (count == 4) ? 2 : 3;
-    
-    //  总行数
-    int rows = (count + maxColumns - 1) / maxColumns;
-    // 高度
-    CGFloat photosH = rows * IWPhotoH + (rows - 1) * IWPhotoMargin;
-    
-    // 总列数
-    int cols = (count >= maxColumns) ? maxColumns : count;
-    // 宽度
-    CGFloat photosW = cols * IWPhotoW + (cols - 1) * IWPhotoMargin;
-    
+    CGFloat photosH;
+    CGFloat photosW;
+    //假如只有一张图片，放大图片
+    if (count == 1) {
+        photosH = IWPhotoH * 3;
+        photosW = IWPhotoW * 3;
+    }else{
+        // 一行最多有3列
+        int maxColumns = (count == 4) ? 2 : 3;
+        
+        //  总行数
+        int rows = (count + maxColumns - 1) / maxColumns;
+        // 高度
+        photosH = rows * IWPhotoH + (rows - 1) * IWPhotoMargin;
+        
+        // 总列数
+        int cols = (count >= maxColumns) ? maxColumns : count;
+        // 宽度
+        photosW = cols * IWPhotoW + (cols - 1) * IWPhotoMargin;
+    }
     return CGSizeMake(photosW, photosH);
+    
+    
     /**
      一共60条数据 == count
      一页10条 == size
