@@ -8,6 +8,7 @@
 
 #import "IWStatusToolbar.h"
 #import "IWStatus.h"
+#import "AFNetworking.h"
 
 @interface IWStatusToolbar()
 @property (nonatomic, strong) NSMutableArray *btns;
@@ -55,6 +56,13 @@
         [self setupDivider];
         [self setupDivider];
         [self setupDivider];
+        
+        //4.指定tag
+        self.reweetBtn.tag = 100;
+        self.commentBtn.tag = 101;
+        self.attitudeBtn.tag = 102;
+        self.hateBtn.tag = 103;
+        
     }
     return self;
 }
@@ -180,6 +188,42 @@
 }
 
 - (void)doButton1:(UIButton *)sender{
-    
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    NSString *URLtop = @"http://latiao.izanpin.com/api/article/";
+    NSString *URLtail = [NSString stringWithFormat:@"like/%@",_status.id];
+    NSString *URLString = [URLtop stringByAppendingString:URLtail];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = @1;
+    [mgr POST:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        IWLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+    switch (sender.tag) {
+        case 100:
+            IWLog(@"转发");
+            break;
+        case 101:
+            IWLog(@"评论");
+            break;
+        case 102:
+            IWLog(@"赞");
+            
+            break;
+        case 103:
+            IWLog(@"踩");
+            break;
+        default:
+            break;
+    }
 }
+
+
+
+
+
+
+
+
+
 @end

@@ -70,7 +70,7 @@
     params[@"uid"] = @([IWAccountTool account].uid);
     
     // 3.发送请求
-    [mgr GET:@"http://wuliaoa.izanpin.com/api/article/joke/1/1" parameters:params
+    [mgr GET:@"http://latiao.izanpin.com/api/article/joke/1/1" parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // 字典转模型
          IWUser *user = [IWUser mj_objectWithKeyValues:responseObject];
@@ -124,9 +124,9 @@
         // 加载ID <= max_id的微博
         long long maxId = [statusFrame.status.id longLongValue];
         params[@"maxId"] = @(maxId);
-        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/%@?maxId=%@",params[@"count"],params[@"maxId"]];
+        URLString = [NSString stringWithFormat:@"http://latiao.izanpin.com/api/article/timeline/1/%@?maxId=%@",params[@"count"],params[@"maxId"]];
     }else{
-        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/%@",params[@"count"]];
+        URLString = [NSString stringWithFormat:@"http://latiao.izanpin.com/api/article/timeline/1/%@",params[@"count"]];
     }
     
     // 3.发送请求
@@ -174,9 +174,9 @@
         IWStatusFrame *statusFrame = self.statusFrames[0];
         // 加载ID比since_id大的微博
         params[@"sinceid"] = statusFrame.status.id;
-        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/100?sinceId=%@",params[@"sinceid"]];
+        URLString = [NSString stringWithFormat:@"http://latiao.izanpin.com/api/article/timeline/1/100?sinceId=%@",params[@"sinceid"]];
     }else{
-        URLString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/article/timeline/1/%@",params[@"count"]];
+        URLString = [NSString stringWithFormat:@"http://latiao.izanpin.com/api/article/timeline/1/%@",params[@"count"]];
     }
     
     // 3.发送请求
