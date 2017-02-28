@@ -129,14 +129,17 @@
 {
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"status"] = self.textView.text;
-    
+    params[@"userId"] = @6;
+    params[@"content"] = self.textView.text;
+
     // 3.发送请求
-    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params
+    [mgr POST:@"http://wuliaoa.izanpin.com/api/article" parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
