@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		028699761E654D8000AEC1A5 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996A1E654D8000AEC1A5 /* MJPhoto.m */; };
+		028699771E654D8000AEC1A5 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */; };
+		028699781E654D8000AEC1A5 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996D1E654D8000AEC1A5 /* MJPhotoBrowser.m */; };
+		028699791E654D8000AEC1A5 /* MJPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996F1E654D8000AEC1A5 /* MJPhotoLoadingView.m */; };
+		0286997A1E654D8000AEC1A5 /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699711E654D8000AEC1A5 /* MJPhotoProgressView.m */; };
+		0286997B1E654D8000AEC1A5 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699731E654D8000AEC1A5 /* MJPhotoToolbar.m */; };
+		0286997C1E654D8000AEC1A5 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699751E654D8000AEC1A5 /* MJPhotoView.m */; };
+		0286998C1E654E6200AEC1A5 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286997F1E654E6200AEC1A5 /* SVIndefiniteAnimatedView.m */; };
+		0286998D1E654E6200AEC1A5 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699811E654E6200AEC1A5 /* SVProgressAnimatedView.m */; };
+		0286998E1E654E6200AEC1A5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 028699821E654E6200AEC1A5 /* SVProgressHUD.bundle */; };
+		0286998F1E654E6200AEC1A5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699841E654E6200AEC1A5 /* SVProgressHUD.m */; };
+		028699901E654E6200AEC1A5 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699861E654E6200AEC1A5 /* SVRadialGradientLayer.m */; };
+		028699911E654E6200AEC1A5 /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699891E654E6200AEC1A5 /* YLGIFImage.m */; };
+		028699921E654E6200AEC1A5 /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286998B1E654E6200AEC1A5 /* YLImageView.m */; };
 		02CA2C2F1E56ABD000C1065F /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CA2C2E1E56ABD000C1065F /* MBProgressHUD+MJ.m */; };
 		0825CA3B191F5E690013C81A /* IWPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0825CA3A191F5E690013C81A /* IWPhotosView.m */; };
 		0825CA3E191F73EA0013C81A /* IWPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0825CA3D191F73EA0013C81A /* IWPhotoView.m */; };
@@ -93,6 +107,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		028699691E654D8000AEC1A5 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
+		0286996A1E654D8000AEC1A5 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
+		0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
+		0286996C1E654D8000AEC1A5 /* MJPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoBrowser.h; sourceTree = "<group>"; };
+		0286996D1E654D8000AEC1A5 /* MJPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoBrowser.m; sourceTree = "<group>"; };
+		0286996E1E654D8000AEC1A5 /* MJPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoLoadingView.h; sourceTree = "<group>"; };
+		0286996F1E654D8000AEC1A5 /* MJPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoLoadingView.m; sourceTree = "<group>"; };
+		028699701E654D8000AEC1A5 /* MJPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoProgressView.h; sourceTree = "<group>"; };
+		028699711E654D8000AEC1A5 /* MJPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoProgressView.m; sourceTree = "<group>"; };
+		028699721E654D8000AEC1A5 /* MJPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoToolbar.h; sourceTree = "<group>"; };
+		028699731E654D8000AEC1A5 /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
+		028699741E654D8000AEC1A5 /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
+		028699751E654D8000AEC1A5 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		0286997E1E654E6200AEC1A5 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		0286997F1E654E6200AEC1A5 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		028699801E654E6200AEC1A5 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		028699811E654E6200AEC1A5 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		028699821E654E6200AEC1A5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		028699831E654E6200AEC1A5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		028699841E654E6200AEC1A5 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		028699851E654E6200AEC1A5 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		028699861E654E6200AEC1A5 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		028699881E654E6200AEC1A5 /* YLGIFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLGIFImage.h; sourceTree = "<group>"; };
+		028699891E654E6200AEC1A5 /* YLGIFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLGIFImage.m; sourceTree = "<group>"; };
+		0286998A1E654E6200AEC1A5 /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
+		0286998B1E654E6200AEC1A5 /* YLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLImageView.m; sourceTree = "<group>"; };
 		02CA2C2D1E56ABD000C1065F /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		02CA2C2E1E56ABD000C1065F /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		0825CA39191F5E690013C81A /* IWPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPhotosView.h; sourceTree = "<group>"; };
@@ -256,6 +296,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		028699681E654D8000AEC1A5 /* MJPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				028699691E654D8000AEC1A5 /* MJPhoto.h */,
+				0286996A1E654D8000AEC1A5 /* MJPhoto.m */,
+				0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */,
+				0286996C1E654D8000AEC1A5 /* MJPhotoBrowser.h */,
+				0286996D1E654D8000AEC1A5 /* MJPhotoBrowser.m */,
+				0286996E1E654D8000AEC1A5 /* MJPhotoLoadingView.h */,
+				0286996F1E654D8000AEC1A5 /* MJPhotoLoadingView.m */,
+				028699701E654D8000AEC1A5 /* MJPhotoProgressView.h */,
+				028699711E654D8000AEC1A5 /* MJPhotoProgressView.m */,
+				028699721E654D8000AEC1A5 /* MJPhotoToolbar.h */,
+				028699731E654D8000AEC1A5 /* MJPhotoToolbar.m */,
+				028699741E654D8000AEC1A5 /* MJPhotoView.h */,
+				028699751E654D8000AEC1A5 /* MJPhotoView.m */,
+			);
+			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		0286997D1E654E6200AEC1A5 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0286997E1E654E6200AEC1A5 /* SVIndefiniteAnimatedView.h */,
+				0286997F1E654E6200AEC1A5 /* SVIndefiniteAnimatedView.m */,
+				028699801E654E6200AEC1A5 /* SVProgressAnimatedView.h */,
+				028699811E654E6200AEC1A5 /* SVProgressAnimatedView.m */,
+				028699821E654E6200AEC1A5 /* SVProgressHUD.bundle */,
+				028699831E654E6200AEC1A5 /* SVProgressHUD.h */,
+				028699841E654E6200AEC1A5 /* SVProgressHUD.m */,
+				028699851E654E6200AEC1A5 /* SVRadialGradientLayer.h */,
+				028699861E654E6200AEC1A5 /* SVRadialGradientLayer.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		028699871E654E6200AEC1A5 /* YLGIFImage */ = {
+			isa = PBXGroup;
+			children = (
+				028699881E654E6200AEC1A5 /* YLGIFImage.h */,
+				028699891E654E6200AEC1A5 /* YLGIFImage.m */,
+				0286998A1E654E6200AEC1A5 /* YLImageView.h */,
+				0286998B1E654E6200AEC1A5 /* YLImageView.m */,
+			);
+			path = YLGIFImage;
+			sourceTree = "<group>";
+		};
 		02CA2C2C1E56ABD000C1065F /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,6 +651,9 @@
 		0863B95B191B1DAC00B6BA5F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				0286997D1E654E6200AEC1A5 /* SVProgressHUD */,
+				028699871E654E6200AEC1A5 /* YLGIFImage */,
+				028699681E654D8000AEC1A5 /* MJPhotoBrowser */,
 				02CA2C2C1E56ABD000C1065F /* MBProgressHUD */,
 			);
 			path = Lib;
@@ -853,9 +943,11 @@
 				08F5B3191920C6110078735A /* IWCommon.h in Resources */,
 				0829D8A019172DBE005E4B1D /* InfoPlist.strings in Resources */,
 				0829D8A819172DBE005E4B1D /* Images.xcassets in Resources */,
+				0286998E1E654E6200AEC1A5 /* SVProgressHUD.bundle in Resources */,
 				08F5B3161920C05B0078735A /* new_feature_2-568h@2x.png in Resources */,
 				08F5B3171920C05B0078735A /* new_feature_3-568h@2x.png in Resources */,
 				08F5B3151920C05B0078735A /* new_feature_1-568h@2x.png in Resources */,
+				028699771E654D8000AEC1A5 /* MJPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,12 +1014,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0286997B1E654D8000AEC1A5 /* MJPhotoToolbar.m in Sources */,
 				02CA2C2F1E56ABD000C1065F /* MBProgressHUD+MJ.m in Sources */,
 				086E63931918803100DDB83F /* UIBarButtonItem+MJ.m in Sources */,
 				2D4B531019290D6D005E954B /* IWSettingLabelItem.m in Sources */,
 				0829D90A19173FFE005E4B1D /* IWTabBar.m in Sources */,
 				08AFD1AD191F069700F4A911 /* IWStatusToolbar.m in Sources */,
 				085052E1191C66AC006484D8 /* IWStatusCell.m in Sources */,
+				028699921E654E6200AEC1A5 /* YLImageView.m in Sources */,
 				2D4B530F19290D6D005E954B /* IWSettingItem.m in Sources */,
 				0863B983191B305100B6BA5F /* IWAccountTool.m in Sources */,
 				0829D8FE19173977005E4B1D /* IWMessageViewController.m in Sources */,
@@ -938,6 +1032,7 @@
 				0829D90719173CFB005E4B1D /* UIImage+MJ.m in Sources */,
 				0857AB78191CCC5A00BB49B5 /* NSDate+MJ.m in Sources */,
 				0829D8FF19173977005E4B1D /* IWAppDelegate.m in Sources */,
+				0286998F1E654E6200AEC1A5 /* SVProgressHUD.m in Sources */,
 				083E0BAC1918C2D20008EA6B /* IWPageControl.m in Sources */,
 				0825CA3E191F73EA0013C81A /* IWPhotoView.m in Sources */,
 				2D4B532619290D72005E954B /* IWCheckViewController.m in Sources */,
@@ -948,6 +1043,7 @@
 				2D4B533719290DFC005E954B /* IWBgCell.m in Sources */,
 				2D4B52F31928F94D005E954B /* IWComposeToolbar.m in Sources */,
 				086E63901918724500DDB83F /* IWNavigationController.m in Sources */,
+				028699791E654D8000AEC1A5 /* MJPhotoLoadingView.m in Sources */,
 				2D4B530B19290D6D005E954B /* IWSettingCheckGroup.m in Sources */,
 				2D4B532E19290D72005E954B /* IWThemeBgViewController.m in Sources */,
 				2D4B531119290D6D005E954B /* IWSettingSwitchItem.m in Sources */,
@@ -955,14 +1051,20 @@
 				2D4B530E19290D6D005E954B /* IWSettingCheckItem.m in Sources */,
 				2D4B52F01928F762005E954B /* IWPlaceholderTextView.m in Sources */,
 				0863B97F191B2EB100B6BA5F /* IWWeiboTool.m in Sources */,
+				0286998D1E654E6200AEC1A5 /* SVProgressAnimatedView.m in Sources */,
 				2D4B52ED1928F510005E954B /* IWComposeViewController.m in Sources */,
+				0286997C1E654D8000AEC1A5 /* MJPhotoView.m in Sources */,
 				2D4B534A19290F09005E954B /* IWDiscoverHeaderView.m in Sources */,
 				2D4B534919290F09005E954B /* IWDiscoverGridView.m in Sources */,
 				2D4B530C19290D6D005E954B /* IWSettingGroup.m in Sources */,
+				0286998C1E654E6200AEC1A5 /* SVIndefiniteAnimatedView.m in Sources */,
 				2D4B532719290D72005E954B /* IWFontViewController.m in Sources */,
 				0863B9EA191B76DC00B6BA5F /* IWUser.m in Sources */,
 				2D4B532D19290D72005E954B /* IWSystemSettingViewController.m in Sources */,
+				028699911E654E6200AEC1A5 /* YLGIFImage.m in Sources */,
+				028699781E654D8000AEC1A5 /* MJPhotoBrowser.m in Sources */,
 				0863B95A191B142700B6BA5F /* IWOAuthViewController.m in Sources */,
+				0286997A1E654D8000AEC1A5 /* MJPhotoProgressView.m in Sources */,
 				08AFD1B3191F20BA00F4A911 /* IWStatusTopView.m in Sources */,
 				2D4B532A19290D72005E954B /* IWLanguageViewController.m in Sources */,
 				0829D90019173977005E4B1D /* main.m in Sources */,
@@ -972,10 +1074,12 @@
 				2D4B534619290F09005E954B /* IWMoreViewController.m in Sources */,
 				2D4B534719290F09005E954B /* IWDiscoverViewController.m in Sources */,
 				0829D8FB19173977005E4B1D /* IWHomeViewController.m in Sources */,
+				028699761E654D8000AEC1A5 /* MJPhoto.m in Sources */,
 				0825CA3B191F5E690013C81A /* IWPhotosView.m in Sources */,
 				086E639919188CD200DDB83F /* IWTitleButton.m in Sources */,
 				2D4B531219290D6D005E954B /* IWSettingValueItem.m in Sources */,
 				2D4B532C19290D72005E954B /* IWReadModeViewController.m in Sources */,
+				028699901E654E6200AEC1A5 /* SVRadialGradientLayer.m in Sources */,
 				2D4B532B19290D72005E954B /* IWMeViewController.m in Sources */,
 				085052E4191C7A27006484D8 /* IWStatusFrame.m in Sources */,
 				08AFD1B0191F1E2E00F4A911 /* IWReweetStatusView.m in Sources */,

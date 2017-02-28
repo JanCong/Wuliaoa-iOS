@@ -11,5 +11,4 @@ target 'Wuliaoa' do
 	pod 'MBProgressHUD'
 	pod 'FMDB'
     pod 'MJExtension'
-	pod 'MJPhotoBrowser'
 end
