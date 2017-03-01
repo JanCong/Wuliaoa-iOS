@@ -32,6 +32,12 @@
 
 @implementation IWHomeViewController
 
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (NSMutableArray *)statusFrames
 {
     if (_statusFrames == nil) {
@@ -52,9 +58,14 @@
     
     // 2.获得用户信息
     [self setupUserData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(Refresh) name:PROBE_DEVICES_CHANGED object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {}
+
+- (void)Refresh{
+    [self.tableView.mj_header beginRefreshing];
+}
 
 /**
  *  获得用户信息

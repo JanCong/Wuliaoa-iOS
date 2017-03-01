@@ -120,6 +120,7 @@
     } else {
         [self sendStatusWithoutImage];
     }
+    
     // 关闭
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -140,6 +141,7 @@
     }
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];
+          [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
           [MBProgressHUD showSuccess:@"发送失败"];
       }];
@@ -163,6 +165,7 @@
     }
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];
+          [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
           [MBProgressHUD showSuccess:@"发送失败"];
       }];

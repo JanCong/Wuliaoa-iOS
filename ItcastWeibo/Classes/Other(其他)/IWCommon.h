@@ -6,6 +6,8 @@
 
 #define IWAPPURL @"http://wuliaoa.izanpin.com/api/"
 #define IWArticleURL @"http://wuliaoa.izanpin.com/api/article"
+
+#define PROBE_DEVICES_CHANGED @"probechanged"
 // 弱引用
 #define MJWeakSelf __weak typeof(self) weakSelf = self;
 
