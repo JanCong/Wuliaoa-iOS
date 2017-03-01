@@ -120,7 +120,6 @@
     } else {
         [self sendStatusWithoutImage];
     }
-    
     // 关闭
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -129,9 +128,6 @@
 {
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -139,7 +135,9 @@
     params[@"content"] = self.textView.text;
 
     // 3.发送请求
-    [mgr POST:@"http://wuliaoa.izanpin.com/api/article" parameters:params
+    [mgr POST:IWArticleURL parameters:params
+    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    }
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -152,15 +150,16 @@
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     
+    
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"status"] = self.textView.text;
+    params[@"userId"] = @6;
+    params[@"content"] = self.textView.text;
     
     // 3.发送请求
-    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [mgr POST:IWArticleURL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.1);
-        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:data name:@"images" fileName:@"" mimeType:@"image/jpeg"];
     }
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];

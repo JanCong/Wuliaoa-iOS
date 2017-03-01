@@ -4,6 +4,8 @@
 #define IWRedirectURI @"http://ios.itcast.cn"
 #define IWLoginURL [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@", IWAppKey, IWRedirectURI]
 
+#define IWAPPURL @"http://wuliaoa.izanpin.com/api/"
+#define IWArticleURL @"http://wuliaoa.izanpin.com/api/article"
 // 弱引用
 #define MJWeakSelf __weak typeof(self) weakSelf = self;
 
