@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021CC6121E680799007322ED /* IWImageCollectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC6111E680799007322ED /* IWImageCollectView.m */; };
+		021CC61F1E6810D5007322ED /* LHBrowsingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC6151E6810D5007322ED /* LHBrowsingImageView.m */; };
+		021CC6201E6810D5007322ED /* LHCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC6171E6810D5007322ED /* LHCollectionViewController.m */; };
+		021CC6211E6810D5007322ED /* LHGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61A1E6810D5007322ED /* LHGroupTableViewCell.m */; };
+		021CC6221E6810D5007322ED /* LHGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61C1E6810D5007322ED /* LHGroupViewController.m */; };
+		021CC6231E6810D5007322ED /* LHPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61E1E6810D5007322ED /* LHPhotoList.m */; };
 		028699761E654D8000AEC1A5 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996A1E654D8000AEC1A5 /* MJPhoto.m */; };
 		028699771E654D8000AEC1A5 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */; };
 		028699781E654D8000AEC1A5 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996D1E654D8000AEC1A5 /* MJPhotoBrowser.m */; };
@@ -107,6 +113,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		021CC6101E680799007322ED /* IWImageCollectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWImageCollectView.h; sourceTree = "<group>"; };
+		021CC6111E680799007322ED /* IWImageCollectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWImageCollectView.m; sourceTree = "<group>"; };
+		021CC6141E6810D5007322ED /* LHBrowsingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHBrowsingImageView.h; sourceTree = "<group>"; };
+		021CC6151E6810D5007322ED /* LHBrowsingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHBrowsingImageView.m; sourceTree = "<group>"; };
+		021CC6161E6810D5007322ED /* LHCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHCollectionViewController.h; sourceTree = "<group>"; };
+		021CC6171E6810D5007322ED /* LHCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHCollectionViewController.m; sourceTree = "<group>"; };
+		021CC6181E6810D5007322ED /* LHConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHConst.h; sourceTree = "<group>"; };
+		021CC6191E6810D5007322ED /* LHGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGroupTableViewCell.h; sourceTree = "<group>"; };
+		021CC61A1E6810D5007322ED /* LHGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGroupTableViewCell.m; sourceTree = "<group>"; };
+		021CC61B1E6810D5007322ED /* LHGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHGroupViewController.h; sourceTree = "<group>"; };
+		021CC61C1E6810D5007322ED /* LHGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGroupViewController.m; sourceTree = "<group>"; };
+		021CC61D1E6810D5007322ED /* LHPhotoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHPhotoList.h; sourceTree = "<group>"; };
+		021CC61E1E6810D5007322ED /* LHPhotoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHPhotoList.m; sourceTree = "<group>"; };
 		028699691E654D8000AEC1A5 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
 		0286996A1E654D8000AEC1A5 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
 		0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
@@ -296,6 +315,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021CC6131E6810D5007322ED /* LHBrowerImage */ = {
+			isa = PBXGroup;
+			children = (
+				021CC6141E6810D5007322ED /* LHBrowsingImageView.h */,
+				021CC6151E6810D5007322ED /* LHBrowsingImageView.m */,
+				021CC6161E6810D5007322ED /* LHCollectionViewController.h */,
+				021CC6171E6810D5007322ED /* LHCollectionViewController.m */,
+				021CC6181E6810D5007322ED /* LHConst.h */,
+				021CC6191E6810D5007322ED /* LHGroupTableViewCell.h */,
+				021CC61A1E6810D5007322ED /* LHGroupTableViewCell.m */,
+				021CC61B1E6810D5007322ED /* LHGroupViewController.h */,
+				021CC61C1E6810D5007322ED /* LHGroupViewController.m */,
+				021CC61D1E6810D5007322ED /* LHPhotoList.h */,
+				021CC61E1E6810D5007322ED /* LHPhotoList.m */,
+			);
+			path = LHBrowerImage;
+			sourceTree = "<group>";
+		};
 		028699681E654D8000AEC1A5 /* MJPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +688,7 @@
 		0863B95B191B1DAC00B6BA5F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				021CC6131E6810D5007322ED /* LHBrowerImage */,
 				0286997D1E654E6200AEC1A5 /* SVProgressHUD */,
 				028699871E654E6200AEC1A5 /* YLGIFImage */,
 				028699681E654D8000AEC1A5 /* MJPhotoBrowser */,
@@ -737,6 +775,8 @@
 				2D4B52EF1928F762005E954B /* IWPlaceholderTextView.m */,
 				2D4B52F11928F94D005E954B /* IWComposeToolbar.h */,
 				2D4B52F21928F94D005E954B /* IWComposeToolbar.m */,
+				021CC6101E680799007322ED /* IWImageCollectView.h */,
+				021CC6111E680799007322ED /* IWImageCollectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1022,6 +1062,7 @@
 				08AFD1AD191F069700F4A911 /* IWStatusToolbar.m in Sources */,
 				085052E1191C66AC006484D8 /* IWStatusCell.m in Sources */,
 				028699921E654E6200AEC1A5 /* YLImageView.m in Sources */,
+				021CC6221E6810D5007322ED /* LHGroupViewController.m in Sources */,
 				2D4B530F19290D6D005E954B /* IWSettingItem.m in Sources */,
 				0863B983191B305100B6BA5F /* IWAccountTool.m in Sources */,
 				0829D8FE19173977005E4B1D /* IWMessageViewController.m in Sources */,
@@ -1043,6 +1084,7 @@
 				2D4B533719290DFC005E954B /* IWBgCell.m in Sources */,
 				2D4B52F31928F94D005E954B /* IWComposeToolbar.m in Sources */,
 				086E63901918724500DDB83F /* IWNavigationController.m in Sources */,
+				021CC6121E680799007322ED /* IWImageCollectView.m in Sources */,
 				028699791E654D8000AEC1A5 /* MJPhotoLoadingView.m in Sources */,
 				2D4B530B19290D6D005E954B /* IWSettingCheckGroup.m in Sources */,
 				2D4B532E19290D72005E954B /* IWThemeBgViewController.m in Sources */,
@@ -1050,6 +1092,7 @@
 				08CE627B191788E1002DA6BF /* IWBadgeButton.m in Sources */,
 				2D4B530E19290D6D005E954B /* IWSettingCheckItem.m in Sources */,
 				2D4B52F01928F762005E954B /* IWPlaceholderTextView.m in Sources */,
+				021CC61F1E6810D5007322ED /* LHBrowsingImageView.m in Sources */,
 				0863B97F191B2EB100B6BA5F /* IWWeiboTool.m in Sources */,
 				0286998D1E654E6200AEC1A5 /* SVProgressAnimatedView.m in Sources */,
 				2D4B52ED1928F510005E954B /* IWComposeViewController.m in Sources */,
@@ -1067,6 +1110,7 @@
 				0286997A1E654D8000AEC1A5 /* MJPhotoProgressView.m in Sources */,
 				08AFD1B3191F20BA00F4A911 /* IWStatusTopView.m in Sources */,
 				2D4B532A19290D72005E954B /* IWLanguageViewController.m in Sources */,
+				021CC6211E6810D5007322ED /* LHGroupTableViewCell.m in Sources */,
 				0829D90019173977005E4B1D /* main.m in Sources */,
 				086E63A01918938100DDB83F /* IWNewfeatureViewController.m in Sources */,
 				0863B97C191B243000B6BA5F /* IWAccount.m in Sources */,
@@ -1076,9 +1120,11 @@
 				0829D8FB19173977005E4B1D /* IWHomeViewController.m in Sources */,
 				028699761E654D8000AEC1A5 /* MJPhoto.m in Sources */,
 				0825CA3B191F5E690013C81A /* IWPhotosView.m in Sources */,
+				021CC6231E6810D5007322ED /* LHPhotoList.m in Sources */,
 				086E639919188CD200DDB83F /* IWTitleButton.m in Sources */,
 				2D4B531219290D6D005E954B /* IWSettingValueItem.m in Sources */,
 				2D4B532C19290D72005E954B /* IWReadModeViewController.m in Sources */,
+				021CC6201E6810D5007322ED /* LHCollectionViewController.m in Sources */,
 				028699901E654E6200AEC1A5 /* SVRadialGradientLayer.m in Sources */,
 				2D4B532B19290D72005E954B /* IWMeViewController.m in Sources */,
 				085052E4191C7A27006484D8 /* IWStatusFrame.m in Sources */,

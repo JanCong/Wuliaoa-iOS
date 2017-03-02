@@ -13,6 +13,7 @@
 #import "IWAccount.h"
 #import "IWAccountTool.h"
 #import "MBProgressHUD+MJ.h"
+#import "IWWeiboTool.h"
 
 @interface IWComposeViewController () <IWComposeToolbarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) UITextView *textView;
@@ -134,13 +135,14 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"userId"] = @6;
     params[@"content"] = self.textView.text;
-
+    params[@"device"] = [IWWeiboTool iphoneType];
     // 3.发送请求
     [mgr POST:IWArticleURL parameters:params
     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];
+          //通知首页刷新
           [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
           [MBProgressHUD showSuccess:@"发送失败"];
@@ -157,6 +159,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"userId"] = @6;
     params[@"content"] = self.textView.text;
+    params[@"device"] = [IWWeiboTool iphoneType];
     
     // 3.发送请求
     [mgr POST:IWArticleURL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -165,6 +168,7 @@
     }
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];
+          //通知首页刷新
           [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
           [MBProgressHUD showSuccess:@"发送失败"];

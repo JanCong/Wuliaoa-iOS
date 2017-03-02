@@ -139,10 +139,10 @@
     self.timeLabel.frame = (CGRect){{timeLabelX, timeLabelY}, timeLabelSize};
     
     // 6.来源
-    self.sourceLabel.text = status.source;
+    self.sourceLabel.text = status.device;
     CGFloat sourceLabelX = CGRectGetMaxX(self.timeLabel.frame) + IWStatusCellBorder;
     CGFloat sourceLabelY = timeLabelY;
-    CGSize sourceLabelSize = [status.source sizeWithFont:IWStatusSourceFont];
+    CGSize sourceLabelSize = [status.device sizeWithFont:IWStatusSourceFont];
     self.sourceLabel.frame = (CGRect){{sourceLabelX, sourceLabelY}, sourceLabelSize};
     
     // 7.正文

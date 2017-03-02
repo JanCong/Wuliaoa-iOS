@@ -49,13 +49,13 @@
     }
 }
 
-- (void)setSource:(NSString *)source
+- (void)setDevice:(NSString *)device
 {
-    int loc = [source rangeOfString:@">"].location + 1;
-    int length = [source rangeOfString:@"</"].location - loc;
-    source = [source substringWithRange:NSMakeRange(loc, length)];
+    int loc = [device rangeOfString:@">"].location + 1;
+    int length = [device rangeOfString:@"</"].location - loc;
+    device = [device substringWithRange:NSMakeRange(loc, length)];
     
-    _source = [NSString stringWithFormat:@"来自%@", source];
+    _device = [NSString stringWithFormat:@"来自%@", device];
 }
 
 @end

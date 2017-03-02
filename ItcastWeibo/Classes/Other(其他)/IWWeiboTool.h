@@ -13,4 +13,9 @@
  *  选择根控制器
  */
 + (void)chooseRootController;
+
+/**
+ *  判断手机类型
+ */
++ (NSString *)iphoneType;
 @end

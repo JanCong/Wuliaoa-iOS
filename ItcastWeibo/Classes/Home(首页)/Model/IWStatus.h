@@ -15,13 +15,10 @@
  *  作者名称
  */
 @property (nonatomic, copy) NSString *authorName;
-
 /**
  *  作者头像
  */
 @property (nonatomic, copy) NSString *authorAvatar;
-
-
 /**
  *  段子的内容
  */
@@ -39,7 +36,6 @@
  *  无聊图的配图(数组中装模型:IWPhoto)
  */
 @property (nonatomic, strong) NSArray *images;
-
 /**
  *  无聊图的评论数
  */
@@ -52,6 +48,13 @@
  *  无聊图的被踩数
  */
 @property (nonatomic, assign) int hateCount;
+/**
+ *  发无聊图的设备
+ */
+@property (nonatomic, copy) NSString *device;
+
+
+
 
 
 /**
@@ -61,7 +64,7 @@
 /**
  *  微博的来源
  */
-@property (nonatomic, copy) NSString *source;
+//@property (nonatomic, copy) NSString *source;
 /**
  *  微博的时间
  */

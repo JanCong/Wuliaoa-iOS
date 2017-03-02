@@ -59,7 +59,7 @@
     // 6.来源
     CGFloat sourceLabelX = CGRectGetMaxX(_timeLabelF) + IWStatusCellBorder;
     CGFloat sourceLabelY = timeLabelY;
-    CGSize sourceLabelSize = [status.source sizeWithFont:IWStatusSourceFont];
+    CGSize sourceLabelSize = [status.device sizeWithFont:IWStatusSourceFont];
     _sourceLabelF = (CGRect){{sourceLabelX, sourceLabelY}, sourceLabelSize};
     
     // 7.微博正文内容
