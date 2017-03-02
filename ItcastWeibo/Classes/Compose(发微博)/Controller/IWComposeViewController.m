@@ -14,7 +14,10 @@
 #import "IWAccountTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "IWWeiboTool.h"
-
+//选择相册
+#import "LHGroupViewController.h"
+#import "LHCollectionViewController.h"
+#import "LHConst.h"
 @interface IWComposeViewController () <IWComposeToolbarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) UITextView *textView;
 @property (nonatomic, weak) IWComposeToolbar *toolbar;
