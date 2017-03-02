@@ -21,7 +21,6 @@
 @interface IWComposeViewController () <IWComposeToolbarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) UITextView *textView;
 @property (nonatomic, weak) IWComposeToolbar *toolbar;
-@property (weak, nonatomic) UIImageView *imageView;
 @property (nonatomic,strong) NSMutableArray *imageArray;//存放处理完的图片
 @property (nonatomic,strong) UIScrollView *scrolView;//滚动视图
 @property (nonatomic,strong) NSMutableArray *scrollSubViews;//存放图片子视图
@@ -46,18 +45,7 @@
 
 - (void)setupImageView
 {
-    UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.frame = CGRectMake(10, 100, 100, 100);
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.clipsToBounds = YES;
-    [self.textView addSubview:imageView];
-    self.imageView = imageView;
-//    UIScrollView *scrol = [[UIScrollView alloc]init];
-//    scrol.frame = CGRectMake(0, 100*(SCREEN_HEIGHT/568)+ 64, 320*(SCREEN_WIDTH/320), 77*(SCREEN_HEIGHT/568));
-//    [self.textView addSubview:scrol];
-//    self.scrolView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//    self.scrolView = scrol;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+
 }
 
 - (void)setupToolbar
@@ -133,7 +121,7 @@
 
 - (void)send
 {
-    if (self.imageView.image) {
+    if (self.imageArray.count) {
         [self sendStatusWithImage];
     } else {
         [self sendStatusWithoutImage];
@@ -180,8 +168,11 @@
     
     // 3.发送请求
     [mgr POST:IWArticleURL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.1);
-        [formData appendPartWithFileData:data name:@"images" fileName:@"" mimeType:@"image/jpeg"];
+        for (int i = 0; i<self.imageArray.count; i++) {
+            UIImage *image = self.imageArray[i];
+            NSData *data = UIImageJPEGRepresentation(image, 0.1);
+            [formData appendPartWithFileData:data name:@"images" fileName:@"" mimeType:@"image/jpeg"];
+        }
     }
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           [MBProgressHUD showSuccess:@"发送成功"];
@@ -231,10 +222,6 @@
 - (void)openAlbum
 {
     [self acquireLocal];
-//    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-//    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    ipc.delegate = self;
-//    [self presentViewController:ipc animated:YES completion:nil];
 }
 
 #pragma mark --
@@ -312,37 +299,68 @@
 
 #pragma mark -展示UI在界面
 -(void)setSpread{
-    self.imageView.image = self.imageArray[0];
-    self.scrolView.contentSize = CGSizeMake((imageWidth+10)*self.imageArray.count, 77*(SCREEN_HEIGHT/568));
-    for (NSInteger i = self.scrollSubViews.count; i<self.imageArray.count; i++) {
-        UIView *itemView = [[UIView alloc]init];
-        itemView.frame = CGRectMake(imageWidth*i+10*i, 5, imageWidth, imageWidth);
-        itemView.backgroundColor = [UIColor whiteColor];
-        [self.scrolView addSubview:itemView];
+    for (int i = 0; i<self.imageArray.count; i++) {
+        NSLog(@"%lu",(unsigned long)self.imageArray.count);
+        UIImageView *photoView = [[UIImageView alloc] init];
+        photoView.image = self.imageArray[i];
+        photoView.userInteractionEnabled = YES;
+        photoView.tag = i;
+//        [photoView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTap:)]];
+        [self.textView addSubview:photoView];
         
-        UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.frame = CGRectMake(0, 0, imageWidth, imageWidth);
-        imageView.image = self.imageArray[i];
-        imageView.userInteractionEnabled = YES;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
-        imageView.tag = 100 +i;
-        [itemView addSubview:imageView];
-        //手势
-        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        deleteBtn.frame = CGRectMake(imageWidth - 17 , -5, 22, 22);
-        deleteBtn.tag = 200+i;
-        NSString *strDelete = [[NSBundle mainBundle]pathForResource:@"02" ofType:@"png"];
-        [deleteBtn setImage:[UIImage imageWithContentsOfFile:strDelete] forState:UIControlStateNormal];//正常显示
-        [deleteBtn addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];//删除
-        [itemView addSubview:deleteBtn];
+        // 设置子控件的frame
+        int maxColumns = (self.imageArray.count == 4) ? 2 : 3;
+        int col = i % maxColumns;
+        int row = i / maxColumns;
+        CGFloat photoX = col * (IWPhotoW + IWPhotoMargin);
+        CGFloat photoY = row * (IWPhotoH + IWPhotoMargin) + 100;
+        photoView.frame = CGRectMake(photoX, photoY, IWPhotoW, IWPhotoH);
         
-        [self.scrollSubFrame addObject:[NSValue valueWithCGRect:itemView.frame]];
-        [self.scrollSubViews addObject:itemView];
-        [UIView animateWithDuration:0.2 animations:^{
-            itemView.alpha = 1;
-        } completion:nil];
+        // Aspect : 按照图片的原来宽高比进行缩
+        // UIViewContentModeScaleAspectFit : 按照图片的原来宽高比进行缩放(一定要看到整张图片)
+        // UIViewContentModeScaleAspectFill :  按照图片的原来宽高比进行缩放(只能图片最中间的内容)
+        // UIViewContentModeScaleToFill : 直接拉伸图片至填充整个imageView
+        
+
+        photoView.contentMode = UIViewContentModeScaleAspectFill;
+        photoView.clipsToBounds = YES;
+
     }
+    
+    
+    
+    
+    
+//    self.scrolView.contentSize = CGSizeMake((imageWidth+10)*self.imageArray.count, 77*(SCREEN_HEIGHT/568));
+//    for (NSInteger i = self.scrollSubViews.count; i<self.imageArray.count; i++) {
+//        UIView *itemView = [[UIView alloc]init];
+//        itemView.frame = CGRectMake(imageWidth*i+10*i, 5, imageWidth, imageWidth);
+//        itemView.backgroundColor = [UIColor whiteColor];
+//        [self.scrolView addSubview:itemView];
+//        
+//        UIImageView *imageView = [[UIImageView alloc]init];
+//        imageView.frame = CGRectMake(0, 0, imageWidth, imageWidth);
+//        imageView.image = self.imageArray[i];
+//        imageView.userInteractionEnabled = YES;
+//        imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        imageView.clipsToBounds = YES;
+//        imageView.tag = 100 +i;
+//        [itemView addSubview:imageView];
+//        //手势
+//        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        deleteBtn.frame = CGRectMake(imageWidth - 17 , -5, 22, 22);
+//        deleteBtn.tag = 200+i;
+//        NSString *strDelete = [[NSBundle mainBundle]pathForResource:@"02" ofType:@"png"];
+//        [deleteBtn setImage:[UIImage imageWithContentsOfFile:strDelete] forState:UIControlStateNormal];//正常显示
+//        [deleteBtn addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];//删除
+//        [itemView addSubview:deleteBtn];
+//        
+//        [self.scrollSubFrame addObject:[NSValue valueWithCGRect:itemView.frame]];
+//        [self.scrollSubViews addObject:itemView];
+//        [UIView animateWithDuration:0.2 animations:^{
+//            itemView.alpha = 1;
+//        } completion:nil];
+//    }
     
 }
 
