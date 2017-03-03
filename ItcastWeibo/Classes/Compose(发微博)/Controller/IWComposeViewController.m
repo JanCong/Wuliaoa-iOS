@@ -22,7 +22,6 @@
 @property (nonatomic, weak) UITextView *textView;
 @property (nonatomic, weak) IWComposeToolbar *toolbar;
 @property (nonatomic,strong) NSMutableArray *imageArray;//存放处理完的图片
-@property (nonatomic,strong) UIScrollView *scrolView;//滚动视图
 @property (nonatomic,strong) NSMutableArray *scrollSubViews;//存放图片子视图
 @property (nonatomic,strong) NSMutableArray *scrollSubFrame;//子视图的frame
 @property (nonatomic,strong) NSMutableArray *localLength;//每张图片的尺寸
@@ -315,52 +314,21 @@
         CGFloat photoX = col * (IWPhotoW + IWPhotoMargin);
         CGFloat photoY = row * (IWPhotoH + IWPhotoMargin) + 100;
         photoView.frame = CGRectMake(photoX, photoY, IWPhotoW, IWPhotoH);
-        
-        // Aspect : 按照图片的原来宽高比进行缩
-        // UIViewContentModeScaleAspectFit : 按照图片的原来宽高比进行缩放(一定要看到整张图片)
-        // UIViewContentModeScaleAspectFill :  按照图片的原来宽高比进行缩放(只能图片最中间的内容)
-        // UIViewContentModeScaleToFill : 直接拉伸图片至填充整个imageView
-        
-
         photoView.contentMode = UIViewContentModeScaleAspectFill;
         photoView.clipsToBounds = YES;
+        //手势
+        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        deleteBtn.frame = CGRectMake(IWPhotoW - 16, 0, 16, 16);
+        deleteBtn.tag = 200+i;
+        [deleteBtn setImage:[UIImage imageNamed:@"02"] forState:UIControlStateNormal];//正常显示
+        [deleteBtn addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];//删除
+        [photoView addSubview:deleteBtn];
+        
+        [self.scrollSubFrame addObject:[NSValue valueWithCGRect:photoView.frame]];
+        [self.scrollSubViews addObject:photoView];
 
     }
-    
-    
-    
-    
-    
-//    self.scrolView.contentSize = CGSizeMake((imageWidth+10)*self.imageArray.count, 77*(SCREEN_HEIGHT/568));
-//    for (NSInteger i = self.scrollSubViews.count; i<self.imageArray.count; i++) {
-//        UIView *itemView = [[UIView alloc]init];
-//        itemView.frame = CGRectMake(imageWidth*i+10*i, 5, imageWidth, imageWidth);
-//        itemView.backgroundColor = [UIColor whiteColor];
-//        [self.scrolView addSubview:itemView];
-//        
-//        UIImageView *imageView = [[UIImageView alloc]init];
-//        imageView.frame = CGRectMake(0, 0, imageWidth, imageWidth);
-//        imageView.image = self.imageArray[i];
-//        imageView.userInteractionEnabled = YES;
-//        imageView.contentMode = UIViewContentModeScaleAspectFill;
-//        imageView.clipsToBounds = YES;
-//        imageView.tag = 100 +i;
-//        [itemView addSubview:imageView];
-//        //手势
-//        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        deleteBtn.frame = CGRectMake(imageWidth - 17 , -5, 22, 22);
-//        deleteBtn.tag = 200+i;
-//        NSString *strDelete = [[NSBundle mainBundle]pathForResource:@"02" ofType:@"png"];
-//        [deleteBtn setImage:[UIImage imageWithContentsOfFile:strDelete] forState:UIControlStateNormal];//正常显示
-//        [deleteBtn addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];//删除
-//        [itemView addSubview:deleteBtn];
-//        
-//        [self.scrollSubFrame addObject:[NSValue valueWithCGRect:itemView.frame]];
-//        [self.scrollSubViews addObject:itemView];
-//        [UIView animateWithDuration:0.2 animations:^{
-//            itemView.alpha = 1;
-//        } completion:nil];
-//    }
+
     
 }
 
@@ -376,7 +344,6 @@
         view.alpha = 0;
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
-        self.scrolView.contentSize = CGSizeMake(imageWidth*self.scrollSubViews.count, imageWidth);
         [UIView animateWithDuration:0.2 animations:^{
             for (NSInteger i = idx; i < self.scrollSubViews.count; i++) {
                 UIView *item = self.scrollSubViews[i];
