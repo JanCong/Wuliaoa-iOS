@@ -26,9 +26,9 @@
 #pragma mark --set Title
 -(void)setTitle{
     _titleLabel = [[UILabel alloc]init];
-    _titleLabel.frame = CGRectMake((SCREEN_WIDTH -100)/2, SCREEN_HEIGHT - 54, 100, 44);
+    _titleLabel.frame = CGRectMake((SCREEN_WIDTH - 50)/2, SCREEN_HEIGHT - 54, 100, 44);
     _titleLabel.textColor = [UIColor whiteColor];
-    _titleLabel.text = [NSString stringWithFormat:@"%ld of %ld",self.index+1,self.assetBigArray.count];
+    _titleLabel.text = [NSString stringWithFormat:@"%ld / %ld",self.index+1,self.assetBigArray.count];
     [self.view addSubview:_titleLabel];
 }
 
@@ -48,7 +48,7 @@
     [self.view addSubview:scrollView];
     //存在bug
     for (int i=0; i<self.assetBigArray.count; i++) {
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, scrollView.frame.size.height)];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*i, -84, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [[LHPhotoList sharePhotoTool]requestImageForAsset:self.assetBigArray[i] size:CGSizeMake(1080, 1920) resizeMode:PHImageRequestOptionsResizeModeFast completion:^(UIImage *image, NSDictionary *info) {
             imageView.image = image;
         }];

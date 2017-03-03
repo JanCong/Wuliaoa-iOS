@@ -25,6 +25,7 @@
 @property (nonatomic,strong) NSMutableArray *scrollSubViews;//存放图片子视图
 @property (nonatomic,strong) NSMutableArray *scrollSubFrame;//子视图的frame
 @property (nonatomic,strong) NSMutableArray *localLength;//每张图片的尺寸
+@property (nonatomic, assign) NSInteger selectedNumber;
 @end
 
 @implementation IWComposeViewController
@@ -36,6 +37,7 @@
     self.scrollSubViews = [NSMutableArray new];
     self.scrollSubFrame = [NSMutableArray new];
     self.localLength = [NSMutableArray new];
+    _selectedNumber = 9;
     [self setupNavBar];
     [self setupTextView];
     [self setupToolbar];
@@ -78,7 +80,7 @@
 {
     [super viewDidAppear:animated];
     
-    [self.textView becomeFirstResponder];
+//    [self.textView becomeFirstResponder];
 }
 
 - (void)textDidChange:(NSNotification *)note
@@ -277,11 +279,12 @@
 #pragma mark -获取本地图片
 -(void)acquireLocal{
     LHGroupViewController *group = [[LHGroupViewController alloc]init];
-    group.maxChooseNumber = 80;
+    group.maxChooseNumber = _selectedNumber;
     __weak IWComposeViewController *weakSelf = self;
     group.backImageArray = ^(NSMutableArray<PHAsset *> *array){
         __strong IWComposeViewController *strongSelf = weakSelf;
         if (array) {
+            _selectedNumber -= array.count;
             for (int i = 0; i<array.count; i++) {
                 PHAsset *asset = array[i];
                 [[LHPhotoList sharePhotoTool]requestImageForAsset:asset size:CGSizeMake(1080, 1920) resizeMode:PHImageRequestOptionsResizeModeFast completion:^(UIImage *image, NSDictionary *info) {
@@ -351,7 +354,7 @@
             }
         } completion:^(BOOL finished) {
             if (finished) {
-                //完成之后处理的code
+                _selectedNumber += 1;
             }
         }];
     }];

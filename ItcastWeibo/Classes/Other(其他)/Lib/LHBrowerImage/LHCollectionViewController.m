@@ -12,7 +12,7 @@
 #import "LHConst.h"
 
 #import "LHBrowsingImageView.h"
-const CGFloat imageSpacing = 2.0f;//图片间距
+const CGFloat imageSpacing = 3.0f;//图片间距
 const NSInteger maxCountInLine = 4;//每行显示图片的张数
 @interface VZTPhotoListCell()
 @property (nonatomic,assign) BOOL isChoose;
@@ -182,6 +182,8 @@ const NSInteger maxCountInLine = 4;//每行显示图片的张数
     [[LHPhotoList sharePhotoTool] requestImageForAsset:self.assetArray[indexPath.row] size:CGSizeMake(65*3, 65*3) resizeMode:PHImageRequestOptionsResizeModeFast completion:^(UIImage *image, NSDictionary *info) {
          __strong typeof(weakSelf) strongSelf = weakSelf;
         cell.imageView.image = image;
+        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        cell.imageView.clipsToBounds = YES;
         [strongSelf.fuzzyImageArray addObject:image];
     }];
     cell.isChoose = [_selectedFalgList[indexPath.row]boolValue];
@@ -220,7 +222,7 @@ const NSInteger maxCountInLine = 4;//每行显示图片的张数
         _label.hidden = NO;
         _remainLabel.hidden = NO;
     }
-    _label.text = [NSString stringWithFormat:@"(%ld)",self.assArray.count];
+    _label.text = [NSString stringWithFormat:@"%ld",self.assArray.count];
     _leReadLabel.text = [NSString stringWithFormat:@"还能选择%ld张照片",self.maxChooseNumber - self.assArray.count];
     
 }

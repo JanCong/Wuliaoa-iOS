@@ -8,9 +8,9 @@
 
 #ifndef LHConst_h
 #define LHConst_h
-#define imageWidth  72
+#define imageWidth  70
 /////// 不建议设置太大，太大的话会导致图片加载过慢
-#define kMaxImageWidth 500
+#define kMaxImageWidth 600
 #define kViewWidth      [[UIScreen mainScreen] bounds].size.width
 //如果项目中设置了导航条为不透明，即[UINavigationBar appearance].translucent=NO，那么这里的kViewHeight需要-64
 #define kViewHeight     [[UIScreen mainScreen] bounds].size.height
