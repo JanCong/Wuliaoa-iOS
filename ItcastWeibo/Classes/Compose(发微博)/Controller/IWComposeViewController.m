@@ -298,7 +298,7 @@
 
 #pragma mark -展示UI在界面
 -(void)setSpread{
-    for (int i = 0; i<self.imageArray.count; i++) {
+    for (NSInteger i = self.scrollSubViews.count; i<self.imageArray.count; i++) {
         NSLog(@"%lu",(unsigned long)self.imageArray.count);
         UIImageView *photoView = [[UIImageView alloc] init];
         photoView.image = self.imageArray[i];
@@ -308,9 +308,9 @@
         [self.textView addSubview:photoView];
         
         // 设置子控件的frame
-        int maxColumns = (self.imageArray.count == 4) ? 2 : 3;
+        int maxColumns = 3;
         int col = i % maxColumns;
-        int row = i / maxColumns;
+        long row = i / maxColumns;
         CGFloat photoX = col * (IWPhotoW + IWPhotoMargin);
         CGFloat photoY = row * (IWPhotoH + IWPhotoMargin) + 100;
         photoView.frame = CGRectMake(photoX, photoY, IWPhotoW, IWPhotoH);

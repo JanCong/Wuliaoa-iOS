@@ -13,6 +13,7 @@
 		021CC6211E6810D5007322ED /* LHGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61A1E6810D5007322ED /* LHGroupTableViewCell.m */; };
 		021CC6221E6810D5007322ED /* LHGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61C1E6810D5007322ED /* LHGroupViewController.m */; };
 		021CC6231E6810D5007322ED /* LHPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61E1E6810D5007322ED /* LHPhotoList.m */; };
+		0275B60F1E6976DC0076B5F6 /* UICustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0275B60E1E6976DC0076B5F6 /* UICustomCollectionView.m */; };
 		028699761E654D8000AEC1A5 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996A1E654D8000AEC1A5 /* MJPhoto.m */; };
 		028699771E654D8000AEC1A5 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */; };
 		028699781E654D8000AEC1A5 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996D1E654D8000AEC1A5 /* MJPhotoBrowser.m */; };
@@ -126,6 +127,8 @@
 		021CC61C1E6810D5007322ED /* LHGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGroupViewController.m; sourceTree = "<group>"; };
 		021CC61D1E6810D5007322ED /* LHPhotoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHPhotoList.h; sourceTree = "<group>"; };
 		021CC61E1E6810D5007322ED /* LHPhotoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHPhotoList.m; sourceTree = "<group>"; };
+		0275B60D1E6976DC0076B5F6 /* UICustomCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomCollectionView.h; sourceTree = "<group>"; };
+		0275B60E1E6976DC0076B5F6 /* UICustomCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomCollectionView.m; sourceTree = "<group>"; };
 		028699691E654D8000AEC1A5 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
 		0286996A1E654D8000AEC1A5 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
 		0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 		021CC6131E6810D5007322ED /* LHBrowerImage */ = {
 			isa = PBXGroup;
 			children = (
+				0275B60D1E6976DC0076B5F6 /* UICustomCollectionView.h */,
+				0275B60E1E6976DC0076B5F6 /* UICustomCollectionView.m */,
 				021CC6141E6810D5007322ED /* LHBrowsingImageView.h */,
 				021CC6151E6810D5007322ED /* LHBrowsingImageView.m */,
 				021CC6161E6810D5007322ED /* LHCollectionViewController.h */,
@@ -1082,6 +1087,7 @@
 				2D4B533119290DAD005E954B /* IWSettingViewController.m in Sources */,
 				0829D8FC19173977005E4B1D /* IWTabBarViewController.m in Sources */,
 				2D4B533719290DFC005E954B /* IWBgCell.m in Sources */,
+				0275B60F1E6976DC0076B5F6 /* UICustomCollectionView.m in Sources */,
 				2D4B52F31928F94D005E954B /* IWComposeToolbar.m in Sources */,
 				086E63901918724500DDB83F /* IWNavigationController.m in Sources */,
 				021CC6121E680799007322ED /* IWImageCollectView.m in Sources */,
