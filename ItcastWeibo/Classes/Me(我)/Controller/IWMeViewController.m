@@ -10,9 +10,12 @@
 #import "IWSettingArrowItem.h"
 #import "IWSettingGroup.h"
 #import "IWSystemSettingViewController.h"
+#import "IWAccount.h"
+#import "IWWeiboTool.h"
+#import "IWAccountTool.h"
+#import "IWOAuthViewController.h"
 
 @interface IWMeViewController ()
-
 @end
 
 @implementation IWMeViewController
@@ -20,14 +23,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // 先判断有无存储账号信息
+    IWAccount *account = [IWAccountTool account];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(setting)];
+    if (account) { // 之前登录成功
+//        [IWWeiboTool chooseRootController];
+    } else { // 之前没有登录成功
+//        [IWWeiboTool chooseRootController];
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [self.window makeKeyAndVisible];
+        self.window.rootViewController = [[IWOAuthViewController alloc] init];
+    }
     
-    [self setupGroup0];
-    [self setupGroup1];
-    [self setupGroup2];
-    [self setupGroup3];
+    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(setting)];
+//
+//    [self setupGroup0];
+//    [self setupGroup1];
+//    [self setupGroup2];
+//    [self setupGroup3];
 }
+
 
 /**
  *  设置

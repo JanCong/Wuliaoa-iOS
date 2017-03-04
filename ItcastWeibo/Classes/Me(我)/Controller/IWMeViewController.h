@@ -10,5 +10,6 @@
 #import "IWSettingViewController.h"
 
 @interface IWMeViewController : IWSettingViewController
+@property (strong, nonatomic) UIWindow *window;
 
 @end

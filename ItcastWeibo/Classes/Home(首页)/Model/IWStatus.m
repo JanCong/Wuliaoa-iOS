@@ -51,9 +51,9 @@
 
 - (void)setDevice:(NSString *)device
 {
-    int loc = [device rangeOfString:@">"].location + 1;
-    int length = [device rangeOfString:@"</"].location - loc;
-    device = [device substringWithRange:NSMakeRange(loc, length)];
+//    int loc = [device rangeOfString:@">"].location + 1;
+//    int length = [device rangeOfString:@"</"].location - loc;
+//    device = [device substringWithRange:NSMakeRange(loc, length)];
     
     _device = [NSString stringWithFormat:@"来自%@", device];
 }

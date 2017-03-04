@@ -139,7 +139,8 @@
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"userId"] = @6;
+    IWAccount *account = [IWAccountTool account];
+    params[@"userId"] = account.id;
     params[@"content"] = self.textView.text;
     params[@"device"] = [IWWeiboTool iphoneType];
     // 3.发送请求

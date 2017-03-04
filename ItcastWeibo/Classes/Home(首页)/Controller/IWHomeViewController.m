@@ -73,27 +73,27 @@
 - (void)setupUserData
 {
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [IWAccountTool account].access_token;
-    params[@"uid"] = @([IWAccountTool account].uid);
-    
-    // 3.发送请求
-    [mgr GET:@"http://latiao.izanpin.com/api/article/joke/1/1" parameters:params
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         // 字典转模型
-         IWUser *user = [IWUser mj_objectWithKeyValues:responseObject];
-         // 设置标题文字
-         [self.titleButton setTitle:user.name forState:UIControlStateNormal];
-         // 保存昵称
-         IWAccount *account = [IWAccountTool account];
-         account.name = user.name;
-         [IWAccountTool saveAccount:account];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         
-     }];
+//    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+//    
+//    // 2.封装请求参数
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"access_token"] = [IWAccountTool account].access_token;
+//    params[@"uid"] = @([IWAccountTool account].uid);
+//    
+//    // 3.发送请求
+//    [mgr GET:@"http://latiao.izanpin.com/api/article/joke/1/1" parameters:params
+//     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//         // 字典转模型
+//         IWUser *user = [IWUser mj_objectWithKeyValues:responseObject];
+//         // 设置标题文字
+//         [self.titleButton setTitle:user.name forState:UIControlStateNormal];
+//         // 保存昵称
+//         IWAccount *account = [IWAccountTool account];
+//         account.name = user.name;
+//         [IWAccountTool saveAccount:account];
+//     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         
+//     }];
 }
 
 /**
@@ -299,8 +299,8 @@
     // 位置和尺寸
     titleButton.frame = CGRectMake(0, 0, 0, 40);
     // 文字
-    if ([IWAccountTool account].name) {
-        [titleButton setTitle:[IWAccountTool account].name forState:UIControlStateNormal];
+    if ([IWAccountTool account].nickname) {
+        [titleButton setTitle:[IWAccountTool account].nickname forState:UIControlStateNormal];
     } else {
         [titleButton setTitle:@"首页" forState:UIControlStateNormal];
     }
