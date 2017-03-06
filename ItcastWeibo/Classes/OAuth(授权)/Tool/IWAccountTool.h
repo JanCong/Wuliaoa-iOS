@@ -22,4 +22,9 @@
  *  返回存储的账号信息
  */
 + (IWAccount *)account;
+
+/**
+ *  删除账号信息
+ */
++ (BOOL)deleteFiel;
 @end

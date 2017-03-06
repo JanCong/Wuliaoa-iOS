@@ -141,8 +141,15 @@
     
     _passTextField.text = passwordStr;
     _userTextField.text = userNameStr;
-
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    
+}
+
+- (void)back{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - keyboard
@@ -255,10 +262,11 @@
     [mgr POST:IWLoginURl parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
-          if (account.nickname != nil) {
+          int isLongin = [responseObject[@"status"] intValue];
+          if (isLongin == 1) {
               [MBProgressHUD showSuccess:@"登录成功"];
               [IWAccountTool saveAccount:account];
-              [IWWeiboTool chooseRootController];
+              [IWWeiboTool chooseTabBarController];
           }else{
               [MBProgressHUD showSuccess:@"登录失败"];
           }

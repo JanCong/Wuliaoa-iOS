@@ -23,4 +23,17 @@
     IWAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:IWAccountFile];
     return account;
 }
+
++ (BOOL)deleteFiel{
+    BOOL exists = [[self alloc] deleteFiel:IWAccountFile error:nil];
+    return exists;
+}
+
+- (BOOL)deleteFiel:(NSString *)pathOfFileToDelete error:(NSError *)error{
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:pathOfFileToDelete];
+    if (exists) {
+        [[NSFileManager defaultManager] removeItemAtPath:pathOfFileToDelete error:nil];
+    }
+    return exists;
+}
 @end

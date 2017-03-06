@@ -11,6 +11,8 @@
 #import "IWSettingGroup.h"
 #import "IWThemeBgViewController.h"
 #import "IWGeneralViewController.h"
+#import "IWAccountTool.h"
+#import "IWWeiboTool.h"
 
 @interface IWSystemSettingViewController ()
 
@@ -46,6 +48,7 @@
     [logoutButton setBackgroundImage:[UIImage resizedImageWithName:@"common_button_red"] forState:UIControlStateNormal];
     [logoutButton setBackgroundImage:[UIImage resizedImageWithName:@"common_button_red_highlighted"] forState:UIControlStateHighlighted];
     [logoutButton setTitle:@"退出当前帐号" forState:UIControlStateNormal];
+    [logoutButton addTarget:self action:@selector(logoutbtn:) forControlEvents:UIControlEventTouchUpInside];
     logoutButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -55,6 +58,14 @@
     footer.frame = CGRectMake(0, 0, 0, footerH);
     self.tableView.tableFooterView = footer;
     [footer addSubview:logoutButton];
+}
+
+- (void)logoutbtn:(UIButton *)btn{
+    BOOL exists = [IWAccountTool deleteFiel];
+    if (exists) {
+        [self.navigationController popViewControllerAnimated:YES];
+        [IWWeiboTool chooseTabBarController];
+    }
 }
 
 - (void)setupGroup0

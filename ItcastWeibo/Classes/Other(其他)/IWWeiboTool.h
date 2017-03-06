@@ -14,6 +14,8 @@
  */
 + (void)chooseRootController;
 
++ (void)chooseTabBarController;
+
 /**
  *  判断手机类型
  */

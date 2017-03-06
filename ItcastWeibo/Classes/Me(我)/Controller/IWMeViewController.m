@@ -30,13 +30,17 @@
 //        [IWWeiboTool chooseRootController];
     } else { // 之前没有登录成功
 //        [IWWeiboTool chooseRootController];
-        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        [self.window makeKeyAndVisible];
-        self.window.rootViewController = [[IWOAuthViewController alloc] init];
+//        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        [self.window makeKeyAndVisible];
+//        self.window.rootViewController = [[IWOAuthViewController alloc] init];
+        
+        IWOAuthViewController *OAuthView = [[IWOAuthViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:OAuthView];
+        [self presentViewController:nav animated:YES completion:nil];
     }
     
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(setting)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(setting)];
 //
 //    [self setupGroup0];
 //    [self setupGroup1];

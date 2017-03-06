@@ -34,6 +34,12 @@
     }
 }
 
++ (void)chooseTabBarController{
+    // 显示状态栏
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    [UIApplication sharedApplication].keyWindow.rootViewController = [[IWTabBarViewController alloc] init];
+}
+
 + (NSString *)iphoneType{
     struct utsname systemInfo;
     
