@@ -21,9 +21,9 @@
 @property(nonatomic, assign)BOOL keyboardIsShow;
 @property(nonatomic, strong)UITextField *userTextField;
 @property(nonatomic, strong)UITextField *passTextField;
+@property(nonatomic, strong)UIButton *sendLoginCodeButton;
 @property(nonatomic, strong)UIButton *loginButton;
-@property(nonatomic, strong)UIImageView *userInputBackImageView;
-@property(nonatomic, strong)UIImageView *passwordInputBackImageView;
+@property(nonatomic, strong)UISwitch *passwordOrCodeSwitch;
 @end
 
 @implementation IWOAuthViewController
@@ -48,51 +48,43 @@
     //用户名
     UIImageView *userBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(70 * FitWidth, nameLabel.frame.origin.y + nameLabel.frame.size.height + 100 * FitHeight, 526/2 * FitWidth, 92/2 * FitHeight)];
     userBackImageView.userInteractionEnabled = YES;
-    userBackImageView.image = [UIImage imageNamed:@"common_button_big_red_disable"];
     [self.view addSubview:userBackImageView];
     
-    _userInputBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10 * FitWidth, 5 * FitHeight, 499/2 * FitWidth, 70/2 * FitHeight)];
-    _userInputBackImageView.userInteractionEnabled = YES;
-    _userInputBackImageView.image = [UIImage imageNamed:@"common_button_big_red_disable"];
-    [userBackImageView addSubview:_userInputBackImageView];
-    _userInputBackImageView.hidden = YES;
-    
-    
-    UIImageView *userIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(-10 * FitWidth, 8 * FitHeight, 56/2 * FitWidth, 56/2 * FitWidth)];
-    userIconImageView.image = [UIImage imageNamed:@"common_button_big_red_disable"];
-    [userBackImageView addSubview:userIconImageView];
-    
     _userTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, userBackImageView.frame.size.width, userBackImageView.frame.size.height)];
+    [_userTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [userBackImageView addSubview:_userTextField];
     
     //密码
     UIImageView *passwordBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(userBackImageView.frame.origin.x, userBackImageView.frame.origin.y + userBackImageView.frame.size.height + 20 * FitHeight, userBackImageView.frame.size.width, userBackImageView.frame.size.height)];
     passwordBackImageView.userInteractionEnabled = YES;
-    passwordBackImageView.image = [UIImage imageNamed:@"common_button_big_red_disable"];
     [self.view addSubview:passwordBackImageView];
     
-    _passwordInputBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10 * FitWidth, 5 *FitHeight, 499/2 * FitWidth, 70/2 * FitHeight)];
-    _passwordInputBackImageView.userInteractionEnabled = YES;
-    _passwordInputBackImageView.image = [UIImage imageNamed:@"common_button_big_red_disable"];
-    [passwordBackImageView addSubview:_passwordInputBackImageView];
-    _passwordInputBackImageView.hidden = YES;
-    
-    UIImageView *passwordIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(userIconImageView.frame.origin.x, userIconImageView.frame.origin.y, userIconImageView.frame.size.width, userIconImageView.frame.size.height)];
-    passwordIconImageView.image = [UIImage imageNamed:@"common_button_big_red_disable"];
-    [passwordBackImageView addSubview:passwordIconImageView];
-    
     _passTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, passwordBackImageView.frame.size.width, passwordBackImageView.frame.size.height)];
+    [_passTextField setBorderStyle:UITextBorderStyleRoundedRect];
     _passTextField.secureTextEntry = YES;
     [passwordBackImageView addSubview:_passTextField];
-    //单位识别码
-    UIImageView *unitBackImageView = [[UIImageView alloc] initWithFrame:CGRectMake(passwordBackImageView.frame.origin.x, passwordBackImageView.frame.origin.y + passwordBackImageView.frame.size.height + 20 * FitHeight, passwordBackImageView.frame.size.width, passwordBackImageView.frame.size.height)];
-    unitBackImageView.userInteractionEnabled = YES;
-    unitBackImageView.image = [UIImage imageNamed:@"common_button_big_red_disable"];
-    [self.view addSubview:unitBackImageView];
+    
+    
+    //是否验证码登录开关
+    _passwordOrCodeSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(passwordBackImageView.frame.origin.x, passwordBackImageView.frame.origin.y + passwordBackImageView.frame.size.height + 20 * FitHeight, passwordBackImageView.frame.size.width/2, passwordBackImageView.frame.size.height)];
+    [_passwordOrCodeSwitch addTarget:self action:@selector(PassOrCodeChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_passwordOrCodeSwitch];
+    
+    
+    //获取验证码
+    _sendLoginCodeButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _sendLoginCodeButton.frame = CGRectMake(passwordBackImageView.frame.origin.x + passwordBackImageView.frame.size.width/2, passwordBackImageView.frame.origin.y + passwordBackImageView.frame.size.height + 20 * FitHeight, passwordBackImageView.frame.size.width/2, _passwordOrCodeSwitch.frame.size.height);
+    _sendLoginCodeButton.backgroundColor = [UIColor colorWithRed:0.59 green:0.42 blue:0.24 alpha:1];
+    [_sendLoginCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    _sendLoginCodeButton.layer.cornerRadius = 25 * FitWidth;
+    [_sendLoginCodeButton setTitleColor:[UIColor colorWithRed:0.94 green:0.76 blue:0.48 alpha:1] forState:UIControlStateNormal];
+    [_sendLoginCodeButton addTarget:self action:@selector(sendBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_sendLoginCodeButton];
+
     
     //登录
     _loginButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    _loginButton.frame = CGRectMake(unitBackImageView.frame.origin.x - 10 * FitWidth, unitBackImageView.frame.origin.y + passwordBackImageView.frame.size.height + 20 * FitHeight, unitBackImageView.frame.size.width, unitBackImageView.frame.size.height);
+    _loginButton.frame = CGRectMake(passwordBackImageView.frame.origin.x, _sendLoginCodeButton.frame.origin.y + _sendLoginCodeButton.frame.size.height + 20 * FitHeight, passwordBackImageView.frame.size.width, passwordBackImageView.frame.size.height);
     _loginButton.backgroundColor = [UIColor colorWithRed:0.59 green:0.42 blue:0.24 alpha:1];
     [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
     _loginButton.layer.cornerRadius = 25 * FitWidth;
@@ -111,18 +103,15 @@
     _userTextField.delegate = self;
     _passTextField.delegate = self;
     
-    _userTextField.placeholder = @"用户名";
+    _userTextField.placeholder = @"手机号";
     _passTextField.placeholder = @"密码";
-    
-    _userTextField.textColor = [UIColor whiteColor];
-    _passTextField.textColor = [UIColor whiteColor];
     
     _userTextField.textAlignment = NSTextAlignmentCenter;
     _passTextField.textAlignment = NSTextAlignmentCenter;
     
     //指定编辑时键盘的return键类型
     _userTextField.returnKeyType = UIReturnKeyNext;
-    _passTextField.returnKeyType = UIReturnKeyNext;
+    _passTextField.returnKeyType = UIReturnKeyDone;
     
     //注册键盘响应事件方法
     [_userTextField addTarget:self action:@selector(nextOnKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
@@ -207,9 +196,9 @@
 {
     
     if (textField == _userTextField) {
-        _userInputBackImageView.hidden = NO;
+        _userTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     }else if (textField == _passTextField){
-        _passwordInputBackImageView.hidden = NO;
+        _passTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     }
     
     
@@ -247,6 +236,48 @@
     NSString *userNameStr = _userTextField.text;
     NSString *passwordStr = _passTextField.text;
     
+    if (_passwordOrCodeSwitch.on == YES) {
+        [self codeLoginuserNameStr:userNameStr passwordStr:passwordStr];
+    }else{
+        [self passwordLoginuserNameStr:userNameStr passwordStr:passwordStr];
+    }
+    
+
+}
+
+
+- (void)codeLoginuserNameStr:(NSString *)userNameStr passwordStr:(NSString *)passwordStr{
+    // 1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    // 2.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"phone"] = userNameStr;
+    params[@"code"] = passwordStr;
+    params[@"device"] = [IWWeiboTool iphoneType];
+    
+    // 3.发送请求
+    [mgr POST:IWCodeLoginURl parameters:params
+      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+          IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
+          int isLongin = [responseObject[@"status"] intValue];
+          if (isLongin == 1) {
+              [MBProgressHUD showSuccess:@"登录成功"];
+              [IWAccountTool saveAccount:account];
+              [IWWeiboTool chooseTabBarController];
+          }else{
+              [MBProgressHUD showSuccess:@"登录失败"];
+          }
+          
+      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          [MBProgressHUD showSuccess:@"发送失败"];
+      }];
+}
+
+
+- (void)passwordLoginuserNameStr:(NSString *)userNameStr passwordStr:(NSString *)passwordStr{
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -257,7 +288,7 @@
     params[@"phone"] = userNameStr;
     params[@"password"] = passwordStr;
     params[@"device"] = [IWWeiboTool iphoneType];
-
+    
     // 3.发送请求
     [mgr POST:IWLoginURl parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -276,101 +307,45 @@
       }];
 }
 
-
-
-#pragma mark - webView代理方法
-/**
- *  webView开始发送请求的时候就会调用
- */
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    // 显示提醒框
-    [MBProgressHUD showMessage:@"哥正在帮你加载中..."];
-}
-
-/**
- *  webView请求完毕的时候就会调用
- */
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    // 隐藏提醒框
-    [MBProgressHUD hideHUD];
-}
-/**
- *  webView请求失败的时候就会调用
- */
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    // 隐藏提醒框
-    [MBProgressHUD hideHUD];
-}
-
-/**
- *  当webView发送一个请求之前都会先调用这个方法, 询问代理可不可以加载这个页面(请求)
- *
- *  @return YES : 可以加载页面,  NO : 不可以加载页面
- */
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    // 1.请求的URL路径: http://ios.itcast.cn/?code=0f189b682cd020e79303dbb043d4fb28
-    NSString *urlStr = request.URL.absoluteString;
-    
-    // 2.查找code=在urlStr中的范围
-    NSRange range = [urlStr rangeOfString:@"code="];
-    
-    // 3.如果urlStr中包含了code=
-    //    if (range.location != NSNotFound)
-    if (range.length) {
-        // 4.截取code=后面的请求标记(经过用户授权成功的)
-        unsigned long loc = range.location + range.length;
-        NSString *code = [urlStr substringFromIndex:loc];
-        
-        // 5.发送POST请求给新浪,  通过code换取一个accessToken
-        [self accessTokenWithCode:code];
-        
-        // 不加载这个请求
-        return NO;
+- (void)PassOrCodeChange:(UISwitch *)sender{
+    if (sender.on) {
+        _passTextField.placeholder = @"验证码";
+        _passTextField.secureTextEntry = NO;
+    }else{
+        _passTextField.placeholder = @"密码";
+        _passTextField.secureTextEntry = YES;
     }
-    
-    return YES;
 }
 
-/**
- *  通过code换取一个accessToken
- redirect_uri	true	string	回调地址，需需与注册应用里的回调地址一致。
- */
-- (void)accessTokenWithCode:(NSString *)code
-{
-    // AFNetworking\AFN
+- (void)sendBtnAction:(id)sender{
+    [self hidenKeyboard];
+    
+    NSString *userNameStr = _userTextField.text;
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"] = IWAppKey;
-    params[@"client_secret"] = IWAppSecret;
-    params[@"grant_type"] = @"authorization_code";
-    params[@"code"] = code;
-    params[@"redirect_uri"] = IWRedirectURI;
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     // 3.发送请求
-    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params
+    NSString *sendLoginCodeURL = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/sms/sendLoginSecurityCode/%@",userNameStr];
+    [mgr POST:sendLoginCodeURL parameters:nil
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
-          // 4.先将字典转为模型
-          IWAccount *account = [IWAccount accountWithDict:responseObject];
+          int status = [responseObject[@"status"] intValue];
+          if (status == 1) {
+              [MBProgressHUD showSuccess:@"发送成功"];
+              [_passwordOrCodeSwitch setOn:YES animated:YES];
+              _passTextField.placeholder = @"验证码";
+          }else{
+              [MBProgressHUD showSuccess:@"发送失败"];
+          }
           
-          // 5.存储模型数据
-          [IWAccountTool saveAccount:account];
-          
-          // 6.新特性\去首页
-          [IWWeiboTool chooseRootController];
-          
-          // 7.隐藏提醒框
-          [MBProgressHUD hideHUD];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // 隐藏提醒框
-        [MBProgressHUD hideHUD];
-    }];
+      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          [MBProgressHUD showSuccess:@"发送失败"];
+      }];
+
 }
+
+
 
 @end

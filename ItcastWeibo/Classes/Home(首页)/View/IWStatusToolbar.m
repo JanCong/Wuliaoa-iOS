@@ -9,6 +9,8 @@
 #import "IWStatusToolbar.h"
 #import "IWStatus.h"
 #import "AFNetworking.h"
+#import "IWAccount.h"
+#import "IWAccountTool.h"
 
 @interface IWStatusToolbar()
 @property (nonatomic, strong) NSMutableArray *btns;
@@ -188,10 +190,14 @@
 }
 
 - (void)doButton1:(UIButton *)sender{
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSString *URLString = @"http://latiao.izanpin.com/api/article/";
     NSString *URLtail;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    IWAccount *account = [IWAccountTool account];
     switch (sender.tag) {
         case 100:
             IWLog(@"转发");
@@ -203,10 +209,10 @@
             IWLog(@"赞");
             URLtail = [NSString stringWithFormat:@"like/%@",_status.id];
             URLString = [URLString stringByAppendingString:URLtail];
-            params[@"userId"] = _status.id;
-            [mgr POST:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            params[@"userId"] = account.id;
+            [mgr POST:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 IWLog(@"%@",responseObject);
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            } failure:^(AFHTTPRequestOperation *task, NSError *error) {
                 IWLog(@"%@",error);
             }];
             break;
@@ -214,10 +220,12 @@
             IWLog(@"踩");
             URLtail = [NSString stringWithFormat:@"hate/%@",_status.id];
             URLString = [URLString stringByAppendingString:URLtail];
-            params[@"userId"] = _status.id;
-            [mgr POST:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            params[@"userId"] = account.id;
+            
+            [mgr POST:URLString parameters:params
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 IWLog(@"%@",responseObject);
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            } failure:^(AFHTTPRequestOperation *task, NSError *error) {
                 IWLog(@"%@",error);
             }];
             break;

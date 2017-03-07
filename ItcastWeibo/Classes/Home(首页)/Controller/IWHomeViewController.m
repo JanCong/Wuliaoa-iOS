@@ -72,28 +72,26 @@
  */
 - (void)setupUserData
 {
-    // 1.创建请求管理对象
-//    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-//    
-//    // 2.封装请求参数
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    params[@"access_token"] = [IWAccountTool account].access_token;
-//    params[@"uid"] = @([IWAccountTool account].uid);
-//    
-//    // 3.发送请求
-//    [mgr GET:@"http://latiao.izanpin.com/api/article/joke/1/1" parameters:params
-//     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//         // 字典转模型
-//         IWUser *user = [IWUser mj_objectWithKeyValues:responseObject];
-//         // 设置标题文字
-//         [self.titleButton setTitle:user.name forState:UIControlStateNormal];
-//         // 保存昵称
-//         IWAccount *account = [IWAccountTool account];
-//         account.name = user.name;
-//         [IWAccountTool saveAccount:account];
-//     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//         
-//     }];
+     //1.创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.封装请求参数
+    IWAccount *account = [IWAccountTool account];
+    NSString *IdString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/user/%@",account.id];
+    // 3.发送请求
+    [mgr GET:IdString parameters:nil
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         // 字典转模型
+         IWAccount *user = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
+         // 设置标题文字
+         [self.titleButton setTitle:user.nickname forState:UIControlStateNormal];
+         // 保存昵称
+         IWAccount *account = [IWAccountTool account];
+         account.nickname = user.nickname;
+         [IWAccountTool saveAccount:account];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         
+     }];
 }
 
 /**

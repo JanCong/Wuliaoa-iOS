@@ -7,6 +7,7 @@
 #define IWAPPURL @"http://wuliaoa.izanpin.com/api/"
 #define IWArticleURL @"http://wuliaoa.izanpin.com/api/article"
 #define IWLoginURl @"http://wuliaoa.izanpin.com/api/user/login"
+#define IWCodeLoginURl @"http://wuliaoa.izanpin.com/api/user/smsLogin"
 
 #define PROBE_DEVICES_CHANGED @"probechanged"
 // 弱引用
