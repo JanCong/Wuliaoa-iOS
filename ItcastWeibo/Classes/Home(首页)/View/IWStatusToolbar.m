@@ -190,7 +190,7 @@
 }
 
 - (void)doButton1:(UIButton *)sender{
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -210,9 +210,9 @@
             URLtail = [NSString stringWithFormat:@"like/%@",_status.id];
             URLString = [URLString stringByAppendingString:URLtail];
             params[@"userId"] = account.id;
-            [mgr POST:URLString parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [mgr POST:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
                 IWLog(@"%@",responseObject);
-            } failure:^(AFHTTPRequestOperation *task, NSError *error) {
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 IWLog(@"%@",error);
             }];
             break;
@@ -223,9 +223,9 @@
             params[@"userId"] = account.id;
             
             [mgr POST:URLString parameters:params
-              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              success:^(NSURLSessionDataTask *task, id responseObject) {
                 IWLog(@"%@",responseObject);
-            } failure:^(AFHTTPRequestOperation *task, NSError *error) {
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 IWLog(@"%@",error);
             }];
             break;

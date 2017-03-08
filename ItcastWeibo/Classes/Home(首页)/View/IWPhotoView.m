@@ -8,7 +8,7 @@
 
 #import "IWPhotoView.h"
 #import "IWPhoto.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface IWPhotoView()
 @property (nonatomic, weak) UIImageView *gifView;

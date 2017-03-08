@@ -135,7 +135,7 @@
 - (void)sendStatusWithoutImage
 {
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -144,22 +144,21 @@
     params[@"content"] = self.textView.text;
     params[@"device"] = [IWWeiboTool iphoneType];
     // 3.发送请求
-    [mgr POST:IWArticleURL parameters:params
-    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    }
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-          [MBProgressHUD showSuccess:@"发送成功"];
-          //通知首页刷新
-          [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
-      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          [MBProgressHUD showSuccess:@"发送失败"];
-      }];
+    [mgr POST:IWArticleURL parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD showSuccess:@"发送成功"];
+        //通知首页刷新
+        [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD showSuccess:@"发送失败"];
+    }];
 }
 
 - (void)sendStatusWithImage
 {
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     
     // 2.封装请求参数
@@ -170,20 +169,22 @@
     params[@"device"] = [IWWeiboTool iphoneType];
     
     // 3.发送请求
-    [mgr POST:IWArticleURL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [mgr POST:IWArticleURL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i = 0; i<self.imageArray.count; i++) {
             UIImage *image = self.imageArray[i];
             NSData *data = UIImageJPEGRepresentation(image, 0.1);
             [formData appendPartWithFileData:data name:@"images" fileName:@"" mimeType:@"image/jpeg"];
         }
-    }
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-          [MBProgressHUD showSuccess:@"发送成功"];
-          //通知首页刷新
-          [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
-      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          [MBProgressHUD showSuccess:@"发送失败"];
-      }];
+
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD showSuccess:@"发送成功"];
+        //通知首页刷新
+        [[NSNotificationCenter defaultCenter] postNotificationName:PROBE_DEVICES_CHANGED object:nil];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD showSuccess:@"发送失败"];
+    }];
 }
 
 - (void)cancel

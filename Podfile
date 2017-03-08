@@ -4,7 +4,6 @@
 target 'Wuliaoa' do
   use_frameworks!
 
-  # Pods for IOSAPPSDKDemo
 	pod 'AFNetworking'
 	pod 'SDWebImage'
 	pod 'MJRefresh'

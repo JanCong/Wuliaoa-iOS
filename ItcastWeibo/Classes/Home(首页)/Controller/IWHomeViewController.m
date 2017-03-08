@@ -73,25 +73,27 @@
 - (void)setupUserData
 {
      //1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     // 2.封装请求参数
     IWAccount *account = [IWAccountTool account];
     NSString *IdString = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/user/%@",account.id];
     // 3.发送请求
-    [mgr GET:IdString parameters:nil
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         // 字典转模型
-         IWAccount *user = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
-         // 设置标题文字
-         [self.titleButton setTitle:user.nickname forState:UIControlStateNormal];
-         // 保存昵称
-         IWAccount *account = [IWAccountTool account];
-         account.nickname = user.nickname;
-         [IWAccountTool saveAccount:account];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         
-     }];
+    [mgr GET:IdString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        // 字典转模型
+        IWAccount *user = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
+        // 设置标题文字
+        [self.titleButton setTitle:user.nickname forState:UIControlStateNormal];
+        // 保存昵称
+        IWAccount *account = [IWAccountTool account];
+        account.nickname = user.nickname;
+        [IWAccountTool saveAccount:account];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
 /**
@@ -121,7 +123,7 @@
 - (void)loadMoreData
 {
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -139,31 +141,34 @@
     }
     
     // 3.发送请求
-    [mgr GET:URLString parameters:nil
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         // 将字典数组转为模型数组(里面放的就是IWStatus模型)
-         NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-         // 创建frame模型对象
-         NSMutableArray *statusFrameArray = [NSMutableArray array];
-         for (IWStatus *status in statusArray) {
-             IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
-             // 传递微博模型数据
-             statusFrame.status = status;
-             [statusFrameArray addObject:statusFrame];
-         }
-         
-         // 添加新数据到旧数据的后面
-         [self.statusFrames addObjectsFromArray:statusFrameArray];
-         
-         // 刷新表格
-         [self.tableView reloadData];
-         
-         // 让刷新控件停止显示刷新状态
-         [self.tableView.mj_footer endRefreshing];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         // 让刷新控件停止显示刷新状态
-         [self.tableView.mj_footer endRefreshing];
-     }];
+    [mgr GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        // 将字典数组转为模型数组(里面放的就是IWStatus模型)
+        NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        // 创建frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (IWStatus *status in statusArray) {
+            IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
+            // 传递微博模型数据
+            statusFrame.status = status;
+            [statusFrameArray addObject:statusFrame];
+        }
+        
+        // 添加新数据到旧数据的后面
+        [self.statusFrames addObjectsFromArray:statusFrameArray];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 让刷新控件停止显示刷新状态
+        [self.tableView.mj_footer endRefreshing];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // 让刷新控件停止显示刷新状态
+        [self.tableView.mj_footer endRefreshing];
+    }];
+    
+
 }
 
 /**
@@ -172,7 +177,7 @@
 - (void)loadNewData
 {
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -189,45 +194,46 @@
     }
     
     // 3.发送请求
-    [mgr GET:URLString parameters:nil
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         // Tell MJExtension what type model will be contained in IWPhoto.
-         [IWStatus mj_setupObjectClassInArray:^NSDictionary *{
-             return @{@"images" : [IWPhoto class]};
-         }];
-         // 将字典数组转为模型数组(里面放的就是IWStatus模型)
-         NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
-         // 创建frame模型对象
-         NSMutableArray *statusFrameArray = [NSMutableArray array];
-         for (IWStatus *status in statusArray) {
-             IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
-             // 传递微博模型数据
-             statusFrame.status = status;
-             [statusFrameArray addObject:statusFrame];
-         }
-         
-         // 将最新的数据追加到旧数据的最前面
-         // 旧数据: self.statusFrames
-         // 新数据: statusFrameArray
-         NSMutableArray *tempArray = [NSMutableArray array];
-         // 添加statusFrameArray的所有元素 添加到 tempArray中
-         [tempArray addObjectsFromArray:statusFrameArray];
-         // 添加self.statusFrames的所有元素 添加到 tempArray中
-         [tempArray addObjectsFromArray:self.statusFrames];
-         self.statusFrames = tempArray;
-         
-         // 刷新表格
-         [self.tableView reloadData];
-         
-         // 让刷新控件停止显示刷新状态
-         [self.tableView.mj_header endRefreshing];
-         
-         // 显示最新微博的数量(给用户一些友善的提示)
-         [self showNewStatusCount:statusFrameArray.count];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         // 让刷新控件停止显示刷新状态
-         [self.tableView.mj_header endRefreshing];
-     }];
+    [mgr GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        // Tell MJExtension what type model will be contained in IWPhoto.
+        [IWStatus mj_setupObjectClassInArray:^NSDictionary *{
+            return @{@"images" : [IWPhoto class]};
+        }];
+        // 将字典数组转为模型数组(里面放的就是IWStatus模型)
+        NSArray *statusArray = [IWStatus mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        // 创建frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (IWStatus *status in statusArray) {
+            IWStatusFrame *statusFrame = [[IWStatusFrame alloc] init];
+            // 传递微博模型数据
+            statusFrame.status = status;
+            [statusFrameArray addObject:statusFrame];
+        }
+        
+        // 将最新的数据追加到旧数据的最前面
+        // 旧数据: self.statusFrames
+        // 新数据: statusFrameArray
+        NSMutableArray *tempArray = [NSMutableArray array];
+        // 添加statusFrameArray的所有元素 添加到 tempArray中
+        [tempArray addObjectsFromArray:statusFrameArray];
+        // 添加self.statusFrames的所有元素 添加到 tempArray中
+        [tempArray addObjectsFromArray:self.statusFrames];
+        self.statusFrames = tempArray;
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 让刷新控件停止显示刷新状态
+        [self.tableView.mj_header endRefreshing];
+        
+        // 显示最新微博的数量(给用户一些友善的提示)
+        [self showNewStatusCount:statusFrameArray.count];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // 让刷新控件停止显示刷新状态
+        [self.tableView.mj_header endRefreshing];
+    }];
 }
 
 /**

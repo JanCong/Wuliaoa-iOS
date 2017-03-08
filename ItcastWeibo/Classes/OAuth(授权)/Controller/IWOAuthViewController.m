@@ -14,13 +14,14 @@
 #import "IWAccountTool.h"
 #import "AFNetworking.h"
 #import "MJExtension.h"
+#import "BLUITextFieldView.h"
 #define FitWidth 1
 #define FitHeight 1 
 @interface IWOAuthViewController () <UIWebViewDelegate,UITextFieldDelegate>
 @property(nonatomic, assign)NSInteger keyboardHeight;
 @property(nonatomic, assign)BOOL keyboardIsShow;
-@property(nonatomic, strong)UITextField *userTextField;
-@property(nonatomic, strong)UITextField *passTextField;
+@property(nonatomic, strong)BLUITextFieldView *userTextField;
+@property(nonatomic, strong)BLUITextFieldView *passTextField;
 @property(nonatomic, strong)UIButton *sendLoginCodeButton;
 @property(nonatomic, strong)UIButton *loginButton;
 @property(nonatomic, strong)UISwitch *passwordOrCodeSwitch;
@@ -50,8 +51,10 @@
     userBackImageView.userInteractionEnabled = YES;
     [self.view addSubview:userBackImageView];
     
-    _userTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, userBackImageView.frame.size.width, userBackImageView.frame.size.height)];
+    _userTextField = [[BLUITextFieldView alloc] initWithFrame:CGRectMake(0, 0, userBackImageView.frame.size.width, userBackImageView.frame.size.height)];
     [_userTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    _userTextField.leftImageView.image = [UIImage imageNamed:@"account_def"];
+    _userTextField.leftImageView.highlightedImage = [UIImage imageNamed:@"account"];
     [userBackImageView addSubview:_userTextField];
     
     //密码
@@ -59,7 +62,7 @@
     passwordBackImageView.userInteractionEnabled = YES;
     [self.view addSubview:passwordBackImageView];
     
-    _passTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, passwordBackImageView.frame.size.width, passwordBackImageView.frame.size.height)];
+    _passTextField = [[BLUITextFieldView alloc] initWithFrame:CGRectMake(0, 0, passwordBackImageView.frame.size.width, passwordBackImageView.frame.size.height)];
     [_passTextField setBorderStyle:UITextBorderStyleRoundedRect];
     _passTextField.secureTextEntry = YES;
     [passwordBackImageView addSubview:_passTextField];
@@ -248,7 +251,7 @@
 
 - (void)codeLoginuserNameStr:(NSString *)userNameStr passwordStr:(NSString *)passwordStr{
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -260,7 +263,7 @@
     
     // 3.发送请求
     [mgr POST:IWCodeLoginURl parameters:params
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+      success:^(NSURLSessionDataTask *task, id responseObject) {
           IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
           int isLongin = [responseObject[@"status"] intValue];
           if (isLongin == 1) {
@@ -271,7 +274,7 @@
               [MBProgressHUD showSuccess:@"登录失败"];
           }
           
-      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
           [MBProgressHUD showSuccess:@"发送失败"];
       }];
 }
@@ -279,7 +282,7 @@
 
 - (void)passwordLoginuserNameStr:(NSString *)userNameStr passwordStr:(NSString *)passwordStr{
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -291,7 +294,7 @@
     
     // 3.发送请求
     [mgr POST:IWLoginURl parameters:params
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+      success:^(NSURLSessionDataTask *task, id responseObject) {
           IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
           int isLongin = [responseObject[@"status"] intValue];
           if (isLongin == 1) {
@@ -302,7 +305,7 @@
               [MBProgressHUD showSuccess:@"登录失败"];
           }
           
-      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
           [MBProgressHUD showSuccess:@"发送失败"];
       }];
 }
@@ -322,7 +325,7 @@
     
     NSString *userNameStr = _userTextField.text;
     // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -330,7 +333,7 @@
     // 3.发送请求
     NSString *sendLoginCodeURL = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/sms/sendLoginSecurityCode/%@",userNameStr];
     [mgr POST:sendLoginCodeURL parameters:nil
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+      success:^(NSURLSessionDataTask *task, id responseObject) {
           int status = [responseObject[@"status"] intValue];
           if (status == 1) {
               [MBProgressHUD showSuccess:@"发送成功"];
@@ -340,7 +343,7 @@
               [MBProgressHUD showSuccess:@"发送失败"];
           }
           
-      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      } failure:^(NSURLSessionDataTask *task, NSError *error) {
           [MBProgressHUD showSuccess:@"发送失败"];
       }];
 

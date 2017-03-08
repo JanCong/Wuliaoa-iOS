@@ -28,6 +28,7 @@
 		028699901E654E6200AEC1A5 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699861E654E6200AEC1A5 /* SVRadialGradientLayer.m */; };
 		028699911E654E6200AEC1A5 /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 028699891E654E6200AEC1A5 /* YLGIFImage.m */; };
 		028699921E654E6200AEC1A5 /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286998B1E654E6200AEC1A5 /* YLImageView.m */; };
+		028BF0F51E6FA49C0064C6A3 /* BLUITextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 028BF0F41E6FA49C0064C6A3 /* BLUITextFieldView.m */; };
 		02CA2C2F1E56ABD000C1065F /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CA2C2E1E56ABD000C1065F /* MBProgressHUD+MJ.m */; };
 		0825CA3B191F5E690013C81A /* IWPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0825CA3A191F5E690013C81A /* IWPhotosView.m */; };
 		0825CA3E191F73EA0013C81A /* IWPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0825CA3D191F73EA0013C81A /* IWPhotoView.m */; };
@@ -155,6 +156,8 @@
 		028699891E654E6200AEC1A5 /* YLGIFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLGIFImage.m; sourceTree = "<group>"; };
 		0286998A1E654E6200AEC1A5 /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
 		0286998B1E654E6200AEC1A5 /* YLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLImageView.m; sourceTree = "<group>"; };
+		028BF0F31E6FA49C0064C6A3 /* BLUITextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLUITextFieldView.h; sourceTree = "<group>"; };
+		028BF0F41E6FA49C0064C6A3 /* BLUITextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLUITextFieldView.m; sourceTree = "<group>"; };
 		02CA2C2D1E56ABD000C1065F /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		02CA2C2E1E56ABD000C1065F /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
 		0825CA39191F5E690013C81A /* IWPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWPhotosView.h; sourceTree = "<group>"; };
@@ -383,6 +386,15 @@
 				0286998B1E654E6200AEC1A5 /* YLImageView.m */,
 			);
 			path = YLGIFImage;
+			sourceTree = "<group>";
+		};
+		028BF0F21E6FA49C0064C6A3 /* UITextFieldView */ = {
+			isa = PBXGroup;
+			children = (
+				028BF0F31E6FA49C0064C6A3 /* BLUITextFieldView.h */,
+				028BF0F41E6FA49C0064C6A3 /* BLUITextFieldView.m */,
+			);
+			path = UITextFieldView;
 			sourceTree = "<group>";
 		};
 		02CA2C2C1E56ABD000C1065F /* MBProgressHUD */ = {
@@ -693,6 +705,7 @@
 		0863B95B191B1DAC00B6BA5F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				028BF0F21E6FA49C0064C6A3 /* UITextFieldView */,
 				021CC6131E6810D5007322ED /* LHBrowerImage */,
 				0286997D1E654E6200AEC1A5 /* SVProgressHUD */,
 				028699871E654E6200AEC1A5 /* YLGIFImage */,
@@ -1099,6 +1112,7 @@
 				2D4B530E19290D6D005E954B /* IWSettingCheckItem.m in Sources */,
 				2D4B52F01928F762005E954B /* IWPlaceholderTextView.m in Sources */,
 				021CC61F1E6810D5007322ED /* LHBrowsingImageView.m in Sources */,
+				028BF0F51E6FA49C0064C6A3 /* BLUITextFieldView.m in Sources */,
 				0863B97F191B2EB100B6BA5F /* IWWeiboTool.m in Sources */,
 				0286998D1E654E6200AEC1A5 /* SVProgressAnimatedView.m in Sources */,
 				2D4B52ED1928F510005E954B /* IWComposeViewController.m in Sources */,
