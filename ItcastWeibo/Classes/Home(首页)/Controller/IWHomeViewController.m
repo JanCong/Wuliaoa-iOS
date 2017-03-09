@@ -7,6 +7,7 @@
 //
 
 #import "IWHomeViewController.h"
+#import "IWHomeDetailTableViewController.h"
 #import "IWBadgeButton.h"
 #import "UIBarButtonItem+MJ.h"
 #import "IWTitleButton.h"
@@ -376,5 +377,12 @@
     }
     
     _oldOffset = scrollView.contentOffset.y;//将当前位移变成缓存位移
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    IWHomeDetailTableViewController *detailView = [[IWHomeDetailTableViewController alloc]init];
+    IWStatusFrame *statusFrame = self.statusFrames[indexPath.row];
+    detailView.statusFrame = statusFrame;
+    [self.navigationController pushViewController:detailView animated:YES];
 }
 @end

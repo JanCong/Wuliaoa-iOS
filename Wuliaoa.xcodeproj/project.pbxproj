@@ -13,6 +13,9 @@
 		021CC6211E6810D5007322ED /* LHGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61A1E6810D5007322ED /* LHGroupTableViewCell.m */; };
 		021CC6221E6810D5007322ED /* LHGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61C1E6810D5007322ED /* LHGroupViewController.m */; };
 		021CC6231E6810D5007322ED /* LHPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 021CC61E1E6810D5007322ED /* LHPhotoList.m */; };
+		026C53411E712D8300883E5D /* IWHomeDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 026C53401E712D8300883E5D /* IWHomeDetailTableViewController.m */; };
+		026C53771E7151A900883E5D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026C53761E7151A900883E5D /* AssetsLibrary.framework */; };
+		026C53D41E71581600883E5D /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = 026C53D31E71581600883E5D /* NSString+Emojize.m */; };
 		0275B60F1E6976DC0076B5F6 /* UICustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0275B60E1E6976DC0076B5F6 /* UICustomCollectionView.m */; };
 		028699761E654D8000AEC1A5 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996A1E654D8000AEC1A5 /* MJPhoto.m */; };
 		028699771E654D8000AEC1A5 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */; };
@@ -128,6 +131,12 @@
 		021CC61C1E6810D5007322ED /* LHGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHGroupViewController.m; sourceTree = "<group>"; };
 		021CC61D1E6810D5007322ED /* LHPhotoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHPhotoList.h; sourceTree = "<group>"; };
 		021CC61E1E6810D5007322ED /* LHPhotoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHPhotoList.m; sourceTree = "<group>"; };
+		026C533F1E712D8300883E5D /* IWHomeDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWHomeDetailTableViewController.h; sourceTree = "<group>"; };
+		026C53401E712D8300883E5D /* IWHomeDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWHomeDetailTableViewController.m; sourceTree = "<group>"; };
+		026C53761E7151A900883E5D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		026C53D11E71581600883E5D /* emojis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emojis.h; sourceTree = "<group>"; };
+		026C53D21E71581600883E5D /* NSString+Emojize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emojize.h"; sourceTree = "<group>"; };
+		026C53D31E71581600883E5D /* NSString+Emojize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emojize.m"; sourceTree = "<group>"; };
 		0275B60D1E6976DC0076B5F6 /* UICustomCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomCollectionView.h; sourceTree = "<group>"; };
 		0275B60E1E6976DC0076B5F6 /* UICustomCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomCollectionView.m; sourceTree = "<group>"; };
 		028699691E654D8000AEC1A5 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
@@ -301,6 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026C53771E7151A900883E5D /* AssetsLibrary.framework in Frameworks */,
 				0829D89819172DBE005E4B1D /* CoreGraphics.framework in Frameworks */,
 				0829D89A19172DBE005E4B1D /* UIKit.framework in Frameworks */,
 				0829D89619172DBE005E4B1D /* Foundation.framework in Frameworks */,
@@ -339,6 +349,16 @@
 				021CC61E1E6810D5007322ED /* LHPhotoList.m */,
 			);
 			path = LHBrowerImage;
+			sourceTree = "<group>";
+		};
+		026C53D01E71581600883E5D /* NSStringEmojize */ = {
+			isa = PBXGroup;
+			children = (
+				026C53D11E71581600883E5D /* emojis.h */,
+				026C53D21E71581600883E5D /* NSString+Emojize.h */,
+				026C53D31E71581600883E5D /* NSString+Emojize.m */,
+			);
+			path = NSStringEmojize;
 			sourceTree = "<group>";
 		};
 		028699681E654D8000AEC1A5 /* MJPhotoBrowser */ = {
@@ -429,6 +449,7 @@
 		0829D89419172DBE005E4B1D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				026C53761E7151A900883E5D /* AssetsLibrary.framework */,
 				0829D89519172DBE005E4B1D /* Foundation.framework */,
 				0829D89719172DBE005E4B1D /* CoreGraphics.framework */,
 				0829D89919172DBE005E4B1D /* UIKit.framework */,
@@ -521,6 +542,8 @@
 			children = (
 				0829D8DF19173977005E4B1D /* IWHomeViewController.h */,
 				0829D8E019173977005E4B1D /* IWHomeViewController.m */,
+				026C533F1E712D8300883E5D /* IWHomeDetailTableViewController.h */,
+				026C53401E712D8300883E5D /* IWHomeDetailTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -705,6 +728,7 @@
 		0863B95B191B1DAC00B6BA5F /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				026C53D01E71581600883E5D /* NSStringEmojize */,
 				028BF0F21E6FA49C0064C6A3 /* UITextFieldView */,
 				021CC6131E6810D5007322ED /* LHBrowerImage */,
 				0286997D1E654E6200AEC1A5 /* SVProgressHUD */,
@@ -1075,6 +1099,7 @@
 				0286997B1E654D8000AEC1A5 /* MJPhotoToolbar.m in Sources */,
 				02CA2C2F1E56ABD000C1065F /* MBProgressHUD+MJ.m in Sources */,
 				086E63931918803100DDB83F /* UIBarButtonItem+MJ.m in Sources */,
+				026C53411E712D8300883E5D /* IWHomeDetailTableViewController.m in Sources */,
 				2D4B531019290D6D005E954B /* IWSettingLabelItem.m in Sources */,
 				0829D90A19173FFE005E4B1D /* IWTabBar.m in Sources */,
 				08AFD1AD191F069700F4A911 /* IWStatusToolbar.m in Sources */,
@@ -1083,6 +1108,7 @@
 				021CC6221E6810D5007322ED /* LHGroupViewController.m in Sources */,
 				2D4B530F19290D6D005E954B /* IWSettingItem.m in Sources */,
 				0863B983191B305100B6BA5F /* IWAccountTool.m in Sources */,
+				026C53D41E71581600883E5D /* NSString+Emojize.m in Sources */,
 				0829D8FE19173977005E4B1D /* IWMessageViewController.m in Sources */,
 				2D4B533819290DFC005E954B /* IWSettingCell.m in Sources */,
 				08AFD1B6191F2B7600F4A911 /* IWPhoto.m in Sources */,
@@ -1274,6 +1300,10 @@
 				GCC_PREFIX_HEADER = "ItcastWeibo/Classes/Other(其他)/Wuliaoa-Prefix.pch";
 				INFOPLIST_FILE = "ItcastWeibo/Wuliaoa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ItcastWeibo/Classes/Other(其他)/Lib/Audio/opencore-amr-iOS/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.broadlink.blappsdkdemo.wuliaoa;
 				PRODUCT_NAME = Wuliaoa;
 				WRAPPER_EXTENSION = app;
@@ -1291,6 +1321,10 @@
 				GCC_PREFIX_HEADER = "ItcastWeibo/Classes/Other(其他)/Wuliaoa-Prefix.pch";
 				INFOPLIST_FILE = "ItcastWeibo/Wuliaoa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ItcastWeibo/Classes/Other(其他)/Lib/Audio/opencore-amr-iOS/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.broadlink.blappsdkdemo.wuliaoa;
 				PRODUCT_NAME = Wuliaoa;
 				WRAPPER_EXTENSION = app;

@@ -12,6 +12,7 @@
 #import "IWAccount.h"
 #import "IWAccountTool.h"
 
+
 @interface IWStatusToolbar()
 @property (nonatomic, strong) NSMutableArray *btns;
 @property (nonatomic, strong) NSMutableArray *dividers;
@@ -210,9 +211,10 @@
             URLtail = [NSString stringWithFormat:@"like/%@",_status.id];
             URLString = [URLString stringByAppendingString:URLtail];
             params[@"userId"] = account.id;
-            [mgr POST:URLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            [mgr POST:URLString parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 IWLog(@"%@",responseObject);
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 IWLog(@"%@",error);
             }];
             break;
@@ -222,8 +224,8 @@
             URLString = [URLString stringByAppendingString:URLtail];
             params[@"userId"] = account.id;
             
-            [mgr POST:URLString parameters:params
-              success:^(NSURLSessionDataTask *task, id responseObject) {
+            [mgr POST:URLString parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+            } success:^(NSURLSessionDataTask *task, id responseObject) {
                 IWLog(@"%@",responseObject);
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 IWLog(@"%@",error);

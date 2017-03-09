@@ -262,21 +262,21 @@
     params[@"device"] = [IWWeiboTool iphoneType];
     
     // 3.发送请求
-    [mgr POST:IWCodeLoginURl parameters:params
-      success:^(NSURLSessionDataTask *task, id responseObject) {
-          IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
-          int isLongin = [responseObject[@"status"] intValue];
-          if (isLongin == 1) {
-              [MBProgressHUD showSuccess:@"登录成功"];
-              [IWAccountTool saveAccount:account];
-              [IWWeiboTool chooseTabBarController];
-          }else{
-              [MBProgressHUD showSuccess:@"登录失败"];
-          }
-          
-      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-          [MBProgressHUD showSuccess:@"发送失败"];
-      }];
+    [mgr POST:IWCodeLoginURl parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
+        int isLongin = [responseObject[@"status"] intValue];
+        if (isLongin == 1) {
+            [MBProgressHUD showSuccess:@"登录成功"];
+            [IWAccountTool saveAccount:account];
+            [IWWeiboTool chooseTabBarController];
+        }else{
+            [MBProgressHUD showSuccess:@"登录失败"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD showSuccess:@"发送失败"];
+    }];
 }
 
 
@@ -293,21 +293,21 @@
     params[@"device"] = [IWWeiboTool iphoneType];
     
     // 3.发送请求
-    [mgr POST:IWLoginURl parameters:params
-      success:^(NSURLSessionDataTask *task, id responseObject) {
-          IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
-          int isLongin = [responseObject[@"status"] intValue];
-          if (isLongin == 1) {
-              [MBProgressHUD showSuccess:@"登录成功"];
-              [IWAccountTool saveAccount:account];
-              [IWWeiboTool chooseTabBarController];
-          }else{
-              [MBProgressHUD showSuccess:@"登录失败"];
-          }
-          
-      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-          [MBProgressHUD showSuccess:@"发送失败"];
-      }];
+    [mgr POST:IWLoginURl parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        IWAccount *account = [IWAccount mj_objectWithKeyValues:responseObject[@"result"]];
+        int isLongin = [responseObject[@"status"] intValue];
+        if (isLongin == 1) {
+            [MBProgressHUD showSuccess:@"登录成功"];
+            [IWAccountTool saveAccount:account];
+            [IWWeiboTool chooseTabBarController];
+        }else{
+            [MBProgressHUD showSuccess:@"登录失败"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD showSuccess:@"发送失败"];
+    }];
 }
 
 - (void)PassOrCodeChange:(UISwitch *)sender{
@@ -332,20 +332,21 @@
     
     // 3.发送请求
     NSString *sendLoginCodeURL = [NSString stringWithFormat:@"http://wuliaoa.izanpin.com/api/sms/sendLoginSecurityCode/%@",userNameStr];
-    [mgr POST:sendLoginCodeURL parameters:nil
-      success:^(NSURLSessionDataTask *task, id responseObject) {
-          int status = [responseObject[@"status"] intValue];
-          if (status == 1) {
-              [MBProgressHUD showSuccess:@"发送成功"];
-              [_passwordOrCodeSwitch setOn:YES animated:YES];
-              _passTextField.placeholder = @"验证码";
-          }else{
-              [MBProgressHUD showSuccess:@"发送失败"];
-          }
-          
-      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-          [MBProgressHUD showSuccess:@"发送失败"];
-      }];
+    [mgr POST:sendLoginCodeURL parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        int status = [responseObject[@"status"] intValue];
+        if (status == 1) {
+            [MBProgressHUD showSuccess:@"发送成功"];
+            [_passwordOrCodeSwitch setOn:YES animated:YES];
+            _passTextField.placeholder = @"验证码";
+        }else{
+            [MBProgressHUD showSuccess:@"发送失败"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD showSuccess:@"发送失败"];
+    }];
+    
 
 }
 
