@@ -17,6 +17,7 @@
 		026C53771E7151A900883E5D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026C53761E7151A900883E5D /* AssetsLibrary.framework */; };
 		026C53D41E71581600883E5D /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = 026C53D31E71581600883E5D /* NSString+Emojize.m */; };
 		0275B60F1E6976DC0076B5F6 /* UICustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0275B60E1E6976DC0076B5F6 /* UICustomCollectionView.m */; };
+		027F7B401E72A973006AE307 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 027F7B3F1E72A973006AE307 /* MessageTextView.m */; };
 		028699761E654D8000AEC1A5 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996A1E654D8000AEC1A5 /* MJPhoto.m */; };
 		028699771E654D8000AEC1A5 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */; };
 		028699781E654D8000AEC1A5 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0286996D1E654D8000AEC1A5 /* MJPhotoBrowser.m */; };
@@ -139,6 +140,8 @@
 		026C53D31E71581600883E5D /* NSString+Emojize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emojize.m"; sourceTree = "<group>"; };
 		0275B60D1E6976DC0076B5F6 /* UICustomCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomCollectionView.h; sourceTree = "<group>"; };
 		0275B60E1E6976DC0076B5F6 /* UICustomCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomCollectionView.m; sourceTree = "<group>"; };
+		027F7B3E1E72A973006AE307 /* MessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTextView.h; sourceTree = "<group>"; };
+		027F7B3F1E72A973006AE307 /* MessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
 		028699691E654D8000AEC1A5 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
 		0286996A1E654D8000AEC1A5 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
 		0286996B1E654D8000AEC1A5 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
@@ -566,6 +569,8 @@
 		0829D8E219173977005E4B1D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				027F7B3E1E72A973006AE307 /* MessageTextView.h */,
+				027F7B3F1E72A973006AE307 /* MessageTextView.m */,
 				086E639719188CD200DDB83F /* IWTitleButton.h */,
 				086E639819188CD200DDB83F /* IWTitleButton.m */,
 				085052DF191C66AC006484D8 /* IWStatusCell.h */,
@@ -1104,6 +1109,7 @@
 				0829D90A19173FFE005E4B1D /* IWTabBar.m in Sources */,
 				08AFD1AD191F069700F4A911 /* IWStatusToolbar.m in Sources */,
 				085052E1191C66AC006484D8 /* IWStatusCell.m in Sources */,
+				027F7B401E72A973006AE307 /* MessageTextView.m in Sources */,
 				028699921E654E6200AEC1A5 /* YLImageView.m in Sources */,
 				021CC6221E6810D5007322ED /* LHGroupViewController.m in Sources */,
 				2D4B530F19290D6D005E954B /* IWSettingItem.m in Sources */,

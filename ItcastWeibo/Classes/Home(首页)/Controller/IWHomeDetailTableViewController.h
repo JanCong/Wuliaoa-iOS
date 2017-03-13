@@ -6,8 +6,8 @@
 //  Copyright © 2017年 itcast. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <SlackTextViewController/SLKTextViewController.h>
 @class IWStatusFrame;
-@interface IWHomeDetailTableViewController : UITableViewController
+@interface IWHomeDetailTableViewController : SLKTextViewController
 @property (nonatomic, strong) IWStatusFrame *statusFrame;
 @end

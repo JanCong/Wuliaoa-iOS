@@ -27,13 +27,8 @@
     IWAccount *account = [IWAccountTool account];
     
     if (account) { // 之前登录成功
-//        [IWWeiboTool chooseRootController];
+
     } else { // 之前没有登录成功
-//        [IWWeiboTool chooseRootController];
-//        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//        [self.window makeKeyAndVisible];
-//        self.window.rootViewController = [[IWOAuthViewController alloc] init];
-        
         IWOAuthViewController *OAuthView = [[IWOAuthViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:OAuthView];
         [self presentViewController:nav animated:YES completion:nil];

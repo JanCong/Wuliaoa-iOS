@@ -15,6 +15,7 @@
 #import "UIImage+MJ.h"
 #import "IWComposeViewController.h"
 #import "IWTabBar.h"
+#import "IWAccountTool.h"
 
 @interface IWTabBarViewController () <IWTabBarDelegate>
 /**
@@ -72,9 +73,15 @@
 
 - (void)tabBarDidClickedPlusButton:(IWTabBar *)tabBar
 {
-    IWComposeViewController *compose = [[IWComposeViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:compose];
-    [self presentViewController:nav animated:YES completion:nil];
+    IWAccount *account = [IWAccountTool account];
+    if(account){
+        IWComposeViewController *compose = [[IWComposeViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:compose];
+        [self presentViewController:nav animated:YES completion:nil];
+    }else{
+        self.selectedIndex = 1;
+    }
+    
 }
 
 /**

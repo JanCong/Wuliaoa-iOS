@@ -10,4 +10,6 @@ target 'Wuliaoa' do
 	pod 'MBProgressHUD'
 	pod 'FMDB'
     pod 'MJExtension'
+    pod 'SlackTextViewController'
+    pod 'LoremIpsum', '~> 1.0'
 end
