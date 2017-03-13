@@ -72,7 +72,7 @@
         /** 6.时间 */
         UILabel *timeLabel = [[UILabel alloc] init];
         timeLabel.font = IWStatusTimeFont;
-        timeLabel.textColor = IWColor(240, 140, 19);
+        timeLabel.textColor = IWColor(100, 100, 100);
         timeLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:timeLabel];
         self.timeLabel = timeLabel;
@@ -124,9 +124,9 @@
         self.vipView.image = [UIImage imageWithName:[NSString stringWithFormat:@"common_icon_membership_level%d", 3/*user.mbrank*/]];
         self.vipView.frame = self.statusFrame.vipViewF;
         
-        self.nameLabel.textColor = [UIColor orangeColor];
+        self.nameLabel.textColor = [UIColor blackColor];
     } else {
-        self.nameLabel.textColor = [UIColor orangeColor];
+        self.nameLabel.textColor = [UIColor blackColor];
         
         self.vipView.hidden = YES;
     }

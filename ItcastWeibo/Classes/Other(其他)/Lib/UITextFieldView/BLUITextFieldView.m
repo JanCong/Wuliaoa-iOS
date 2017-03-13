@@ -15,8 +15,6 @@
     if (self) {
         UIView *leftImageview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
         _leftImageView = [[UIImageView alloc] init];
-//        _leftImageView.image = [UIImage imageNamed:imageName];
-//        _leftImageView.highlightedImage = [UIImage imageNamed:highImageName];
         _leftImageView.highlighted = NO;
         _leftImageView.contentMode = UIViewContentModeCenter;
         _leftImageView.center = leftImageview.center;

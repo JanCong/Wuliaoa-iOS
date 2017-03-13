@@ -53,7 +53,7 @@
     
     // 设置文字属性
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[UITextAttributeTextColor] = iOS7 ? [UIColor orangeColor] : [UIColor grayColor];
+    textAttrs[UITextAttributeTextColor] = iOS7 ? IWColor(57, 177, 255) : [UIColor grayColor];
     textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
     textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:iOS7 ? 15 : 12];
     [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
